@@ -1,0 +1,3 @@
+<div id="{{ slug }}-menu" class="{% block menu-css %}ui {% if css_class %}{{ css_class }} {% endif %}menu{% endblock %}" {% block menu-extra-attrs %}role="menu"{% endblock %}>
+    {% include "menus/partials/menu_only_links.html" with menu=menu %}
+</div>

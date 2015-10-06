@@ -3,13 +3,11 @@ django ERP - Default Theme
 
 This is the default theme for **django ERP** which offers a clean and modern _Look & Feel_.
 
-Icons
------
+This theme is based on:
 
-This theme is using some icons from:
-
- * The **Silk icon set** project by Mark James: http://www.famfamfam.com/lab/icons/silk/
- * The **Noun Project**: http://www.thenounproject.com
+ * **jQuery**: https://jquery.com/
+ * **Semantic UI**: http://semantic-ui.com/
+ * **Font Awesome**: https://fortawesome.github.io/Font-Awesome/
 
 Author's details
 ----------------

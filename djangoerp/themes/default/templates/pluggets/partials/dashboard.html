@@ -1,0 +1,25 @@
+{% extends "pluggets/partials/region.html" %}
+
+{% load i18n %}
+{% load permfuncs %}
+
+{% block region-class %}ui {{ block.super }} dashboard three column doubling stackable grid{% endblock %}
+
+{% block region-plugget %}
+    <div class="column">
+        {{ block.super }}
+    </div>
+{% endblock %}
+
+{% block region-after-pluggets %}
+    <div class="column">
+        <p class="empty-plugget-space">
+            {% if region|user_has_perm:"pluggets.change_region" and perms.pluggets.add_plugget %}
+            <a class="ui circular icon button" title="{% trans 'Add plugget' %}" href="{% url 'plugget_add' region.slug %}">
+                <i class="plus icon"></i>
+            </a>
+            {% trans "Click to add a plugget" %}</span>
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}

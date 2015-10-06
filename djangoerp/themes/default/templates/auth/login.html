@@ -1,28 +1,39 @@
-{% extends "base.html" %}
+{% extends "splash.html" %}
 
 {% load i18n %}
-{% load breadcrumbs %}
+{% load staticfiles %}
 
 {% block meta_title %}{% trans 'Login' %}{% endblock %}
 
 {% block extrastyle %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/login.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
 {% endblock %}
 
 {% block bodyclass %}login{% endblock %}
 
-{% block breadcrumbs %}
-    {% add_crumb 'Home' '/' %}
-    {% add_crumb 'Login' %}
+{% block layout %}
+    <div class="ui splash padded raised segment">
+        <img class="ui center aligned image" src="/static/images/logo_splash.png"/>
+        <form class="ui form" method="post" action=".">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% for field in form %}
+            <div class="{% if field.field.required %}required {% endif %}field">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button type="submit" class="ui right labeled icon right floated button">
+                <i class="right arrow icon"></i>
+                {% trans 'Login' %}
+            </button>
+        </form>
+    </div>
 {% endblock %}
 
-{% block main %}
-<form method="post" action=".">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}" />
-    {{ form.as_p }}
-    {% block after-form %}{% endblock %}
-    <span class="submit"><button>{% trans 'Login' %}</button></span>
-</form>
+{% block onbodyload-djangoerp %}
+    $('.ui.splash.segment > .ui.image')
+        .hide()
+        .transition('scale in', '2s');
 {% endblock %}
 

@@ -1,0 +1,19 @@
+{% load regions %}
+
+<div id="{% block region-slug %}{{ region.slug }}-region{% endblock %}" class="{% block region-class %}region{% endblock %}">
+    {% block region-before-pluggets %}
+    {% endblock %}
+
+    {% block region-pluggets %}
+    {% for p in region.pluggets.all %}
+        {% with plugget_index=forloop.counter0 %}
+        {% block region-plugget %}
+        {% render_plugget p.pk %}
+        {% endblock %}
+        {% endwith %}
+    {% endfor %}
+    {% endblock %}
+
+    {% block region-after-pluggets %}
+    {% endblock %}
+</div>

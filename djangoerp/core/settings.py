@@ -55,4 +55,4 @@ AUTHENTICATION_BACKENDS = (
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-BREADCRUMBS_DEFAULT_TEMPLATE = "elements/breadcrumbs.html"
+BREADCRUMBS_DEFAULT_TEMPLATE = "partials/breadcrumbs.html"

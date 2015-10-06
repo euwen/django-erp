@@ -16,4 +16,4 @@ __copyright__ = 'Copyright (c) 2013-2014, django ERP Team'
 __version__ = '0.0.5'
 
 
-REGION_DEFAULT_TEMPLATE = "pluggets/region.html"
+REGION_DEFAULT_TEMPLATE = "pluggets/partials/region.html"

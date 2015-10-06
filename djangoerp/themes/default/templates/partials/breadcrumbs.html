@@ -1,0 +1,19 @@
+{% load i18n %}
+
+{% if breadcrumbs %}
+{% for crumb, link in breadcrumbs %}
+<div class="link breadcrumb item">
+    {% if forloop.first %}
+        {% if link %}<a href='{{ link }}' title='{% trans crumb %}'>{% endif %}
+            <i class="home icon"></i> {% trans crumb %}
+        {% if link %}</a>{% endif %}
+    {% else %}
+        {% if link %}
+            <a href='{{ link }}' title='{% trans crumb %}'>{% trans crumb %}</a>
+        {% else %}
+            <div class="active item">{% trans crumb %}</div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endfor %}
+{% endif %}

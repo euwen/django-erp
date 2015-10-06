@@ -25,7 +25,8 @@ def install(apps, schema_editor):
     # Menus.
     main_menu, is_new = Menu.objects.get_or_create(
         slug="main",
-        description=_("Main menu")
+        description=_("Main menu"),
+        template_name="menus/partials/menu_sidebar.html"
     )
     
     user_area_not_logged_menu, is_new = Menu.objects.get_or_create(
@@ -47,6 +48,7 @@ def install(apps, schema_editor):
         title=_("My Dashboard"),
         slug="my-dashboard",
         description=_("Go back to your dashboard"),
+        icon="dashboard",
         url="/"
     )
     

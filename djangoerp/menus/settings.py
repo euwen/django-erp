@@ -16,4 +16,4 @@ __copyright__ = 'Copyright (c) 2013-2014, django ERP Team'
 __version__ = '0.0.5'
 
 
-MENU_DEFAULT_TEMPLATE = "menus/menu.html"
+MENU_DEFAULT_TEMPLATE = "menus/partials/menu.html"

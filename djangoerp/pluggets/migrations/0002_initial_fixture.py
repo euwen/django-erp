@@ -29,7 +29,7 @@ def install(apps, schema_editor):
     main_menu_plugget, is_new = Plugget.objects.get_or_create(
         title=_("Main menu"),
         source="djangoerp.pluggets.pluggets.menu",
-        template="pluggets/menu.html",
+        template="pluggets/partials/menu.html",
         context='{"name": "main"}',
         region_id=sidebar_region.pk
     )
@@ -38,7 +38,7 @@ def install(apps, schema_editor):
         title=_("Powered by"),
         description=_('Shows a classic "Powered by XYZ" claim.'),
         source="djangoerp.pluggets.pluggets.text",
-        template="pluggets/powered-by.html",
+        template="pluggets/partials/powered-by.html",
         context='{"name": "django ERP", "url": "https://github.com/djangoERPTeam/django-erp"}',
         region_id=footer_region.pk
     )
