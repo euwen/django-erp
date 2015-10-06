@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 """This file is part of the django ERP project.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,11 +13,12 @@ THE SOFTWARE.
 """
 
 __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
-__copyright__ = 'Copyright (c) 2013-2014, django ERP Team'
+__copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
 
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.text import slugify
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -24,6 +26,7 @@ from django.utils.translation import ugettext_lazy as _
 from djangoerp.core.models import validate_json
 
 
+@python_2_unicode_compatible
 class Region(models.Model):
     """A logical area that could host any kind of Pluggets.
     
@@ -39,7 +42,7 @@ class Region(models.Model):
         verbose_name = _('region')
         verbose_name_plural = _('regions')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title or self.slug
 
     def get_absolute_url(self):
@@ -51,6 +54,7 @@ class Region(models.Model):
             pass
         return "/"
 
+@python_2_unicode_compatible
 class Plugget(models.Model):
     """A plugget is a graphical element hosted on a Region.
     """
@@ -68,7 +72,7 @@ class Plugget(models.Model):
         verbose_name_plural = _('pluggets')
         unique_together = ('region', 'title')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s | %s" % (self.region, self.title)
         
     def slug(self):

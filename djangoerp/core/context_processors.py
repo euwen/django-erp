@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 """This file is part of the django ERP project.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,7 +13,7 @@ THE SOFTWARE.
 """
 
 __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
-__copyright__ = 'Copyright (c) 2013-2014, django ERP Team'
+__copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
 from django.utils.functional import lazy
@@ -29,8 +30,8 @@ class ObjPermLookupDict(object):
 
     def __repr__(self):
         if self.user.is_superuser:
-            return str([p.uid for p in ObjectPermission.objects.filter(perm__content_type__app_label=self.module_name) if len(p.uid.split('.')) == 3])
-        return str([p.uid for p in self.user.objectpermissions.filter(perm__content_type__app_label=self.module_name) if len(p.uid.split('.')) == 3])
+            return repr([p.uid for p in ObjectPermission.objects.filter(perm__content_type__app_label=self.module_name) if len(p.uid.split('.')) == 3])
+        return repr([p.uid for p in self.user.objectpermissions.filter(perm__content_type__app_label=self.module_name) if len(p.uid.split('.')) == 3])
 
     def __getitem__(self, perm_name):
         if self.user.is_superuser:

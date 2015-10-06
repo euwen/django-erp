@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 """This file is part of the django ERP project.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,7 +13,7 @@ THE SOFTWARE.
 """
 
 __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
-__copyright__ = 'Copyright (c) 2013-2014, django ERP Team'
+__copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
 
@@ -143,7 +144,7 @@ class AuthContextProcessorTestCase(TestCase):
         
         self.assertEqual(
             "%s" % obj_perms['core'],
-            "[u'core.view_user.1', u'core.change_user.1', u'core.delete_user.1']"
+            repr(['core.view_user.1', 'core.change_user.1', 'core.delete_user.1'])
         )
         
     def test_repr_module_obj_perms_for_superuser(self):
@@ -154,5 +155,5 @@ class AuthContextProcessorTestCase(TestCase):
         
         self.assertEqual(
             "%s" % obj_perms['core'],
-            "[u'core.view_user.1', u'core.view_user.2', u'core.change_user.1', u'core.change_user.2', u'core.delete_user.1', u'core.delete_user.2']"
+            repr(['core.view_user.1', 'core.view_user.2', 'core.change_user.1', 'core.change_user.2', 'core.delete_user.1', 'core.delete_user.2'])
         )

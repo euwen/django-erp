@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 """This file is part of the django ERP project.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,7 +13,7 @@ THE SOFTWARE.
 """
 
 __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
-__copyright__ = 'Copyright (c) 2013-2014, django ERP Team'
+__copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
 from hashlib import md5
@@ -21,7 +22,7 @@ from django import template
 register = template.Library()
 
 @register.simple_tag
-def avatar(email, size=32, default="mm", css_class="ui avatar image"):
+def avatar(email, size=32, default="mm", css_class="avatar image"):
     """Returns the gravatar image associated to the given email.
     
     More info: http://www.gravatar.com
@@ -31,7 +32,7 @@ def avatar(email, size=32, default="mm", css_class="ui avatar image"):
     # Creates and returns the URL.
     h = ""
     if email:
-        h = md5(email).hexdigest()
+        h = md5(email.encode('utf-8')).hexdigest()
     url = 'http://www.gravatar.com/avatar/%s?s=%s&r=g' % (h, size)
     
     # Adds a default image URL (if present).

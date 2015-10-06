@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 """This file is part of the django ERP project.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -12,7 +13,7 @@ THE SOFTWARE.
 """
 
 __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
-__copyright__ = 'Copyright (c) 2013-2014, django ERP Team'
+__copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
 import copy
@@ -90,7 +91,7 @@ class RenderMenuTagTestCase(TestCase):
         """        
         output = render_menu({}, "empty-menu")
         
-        self.assertEqual(output, "")
+        self.assertEqual(output.replace('\n', ''), '<ul id="empty-menu-menu" class="menu"></ul>')
         
     def test_render_valid_menu(self):
         """Tests rendering a valid menu.

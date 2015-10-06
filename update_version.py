@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
 from datetime import datetime
@@ -24,6 +25,7 @@ def replace(root, replace_dict):
                         text = text.replace(old_string, new_string)
                         replaced = True
                         infile.seek(0)
+                infile.truncate()
                 infile.write(text)
                 if replaced:
                     print "Replaced in " + path
