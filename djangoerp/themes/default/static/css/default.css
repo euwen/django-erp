@@ -124,8 +124,17 @@
     color: rgba(0,0,0,.6);
 }
 
-.region.dashboard .plugget.panel {
+.region.dashboard .plugget {
     min-height: 240px;
+}
+
+.region.dashboard .plugget .content {
+    flex-grow: 999999;
+}
+
+.region.dashboard .plugget .content:first-child,
+.region.dashboard .plugget .extra.content {
+    flex-grow: 1;
 }
 
 #footer {

@@ -1,0 +1,32 @@
+{% load i18n %}
+{% load perms %}
+
+<div id="{{ plugget.slug }}-plugget" class="{% block plugget-css %}ui fluid card plugget {{ plugget.slug }}{% endblock %}">
+    <div class="content">
+        <div class="header">
+            {% block plugget-icon %}{% endblock %}
+            {% block plugget-title %}<strong>{% if plugget.title %}{% trans plugget.title %}{% else %}{% trans plugget.template.title %}{% endif %}</strong>{% endblock %}
+            {% if plugget.region|user_has_perm:"pluggets.change_region" %}
+            <div class="ui right floated mini icon basic buttons">
+                {% if plugget|user_has_perm:"pluggets.change_plugget" %}
+                <a class="ui button" title="{% trans 'Edit' %}"  href="{{ plugget.get_edit_url }}">
+                    <i class="pencil icon"></i>
+                </a>
+                {% endif %}
+                {% if plugget|user_has_perm:"pluggets.delete_plugget" %}
+                <a class="ui button" title="{% trans 'Delete' %}"  href="{{ plugget.get_delete_url }}">
+                    <i class="trash icon"></i>
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% block plugget-body %}
+    <div class="content">
+        {% block plugget-content %}
+        {% if text %}{% trans text %}{% endif %}
+        {% endblock %}
+    </div>
+    {% endblock %}
+</div>
