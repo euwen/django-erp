@@ -25,6 +25,7 @@ from django.template.loader import render_to_string
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 
+from ..utils import get_bookmarks_for
 from ..models import Menu
 
 
@@ -91,6 +92,18 @@ def render_menu(context, slug, html_template=None, css_class=None):
     Example tag usage: {% render_menu menu_slug [html_template] [css_class] %}
     """
     return _render_menu(slug, context, html_template, css_class)
+
+
+@register.assignment_tag(takes_context=True)
+def get_user_bookmarks(context):
+    """Returns the bookmark menu for the current logged user.
+    
+    Example tag usage: {% get_user_bookmarks %}
+    """
+    user = context.get('user', None)
+    if isinstance(user, get_user_model()) and user.pk:
+        return get_bookmarks_for(user.username)
+    return ""
     
 
 @register.simple_tag(takes_context=True)
@@ -102,7 +115,7 @@ def render_user_bookmarks(context, css_class=None):
     user = context.get('user', None)
     if isinstance(user, get_user_model()) and user.pk:
         return _render_menu("user_%d_bookmarks" % user.pk, context, None, css_class)
-    return ""    
+    return ""
 
 
 @register.assignment_tag(takes_context=True)
