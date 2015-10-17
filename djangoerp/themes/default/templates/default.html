@@ -18,7 +18,7 @@
                     </button>
                 </div>
                 {% block navbar-menu %}
-                    {% if user.is_authenticated %}{% render_menu "navbar" %}{% endif %}
+                    {% if user.is_authenticated %}{% render_menu "user_area_logged" "menus/partials/menu_navbar.html" %}{% endif %}
                 {% endblock %}
             </div>
         </nav>

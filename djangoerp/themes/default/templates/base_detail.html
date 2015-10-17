@@ -1,8 +1,8 @@
 {% extends "default.html" %}
 
 {% load i18n %}
+{% load introspection %}
 {% load menus %}
-{% load models %}
 
 {% block meta-title %}
     {{ object|striptags|capfirst }}
