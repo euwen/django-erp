@@ -16,6 +16,7 @@ __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
 __copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
+
 import hashlib, json
 from datetime import datetime
 from django.db import models
@@ -26,7 +27,6 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.template.loader import render_to_string
 from djangoerp.core.models import validate_json
-from djangoerp.core.utils.rendering import field_to_string
 
 from .managers import *
 
@@ -207,11 +207,11 @@ class Observable(object):
                 field = self.__field_cache[name]
                 label = "%s" % field.verbose_name
                 if name not in self.__change_exclude:
-                    old_value = field_to_string(field, self)
+                    old_value = getattr(self, field.name)
                     if label in self.__changes:
                         old_value = self.__changes[label][0]
                     super(Observable, self).__setattr__(name, value)
-                    value = field_to_string(field, self)
+                    value = getattr(self, field.name)
                     if value != old_value:
                         self.__changes[label] = ("%s" % old_value, "%s" % value)
                 return
