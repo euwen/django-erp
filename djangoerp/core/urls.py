@@ -33,5 +33,5 @@ urlpatterns = [
     url(r'^users/(?P<pk>\d+)/delete/$', view=DeleteUserView.as_view(), name='user_delete'),
     
     # Homepage.
-    url(r'^$', TemplateView.as_view(template_name="index.html")),
+    url(r'^$', TemplateView.as_view(template_name="index.html"), name='home'),
 ]
