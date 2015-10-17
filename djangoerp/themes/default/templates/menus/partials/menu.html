@@ -1,3 +1,19 @@
-<div id="{{ slug }}-menu" class="{% block menu-css %}ui {% if css_class %}{{ css_class }} {% endif %}menu{% endblock %}" {% block menu-extra-attrs %}role="menu"{% endblock %}>
-    {% include "menus/partials/menu_only_links.html" with menu=menu %}
-</div>
+{% load i18n %}
+{% load markup %}
+{% load menus %}
+
+<ul id="{{ slug }}-menu" class="{% block menu-css %}nav{% endblock %}" role="menu"{% block menu-extra-attrs %}{% endblock %}>
+{% block menu-links %}
+{% for link in links %}
+    {% if link and link.authorized and link.get_absolute_url %}
+    {% score_link link request.get_full_path as active_css_class %}
+    {% join ' ' active_css_class css_class as style %}
+    <li{% if style %} class="{{ style }}"{% endif %} id="{{ link.slug|escape }}-link">
+        {% block menu-link %}
+        {% include link.template_name|default:"menus/partials/link.html" with link=link %}
+        {% endblock %}
+    </li>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+</ul>

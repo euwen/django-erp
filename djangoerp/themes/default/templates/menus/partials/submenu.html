@@ -1,3 +1,5 @@
 {% extends "menus/partials/menu.html" %}
 
-{% block menu-css %}{% if css_class %}{{ css_class }} {% endif %}menu{% endblock %}
+{% block menu-css %}dropdown-menu{% endblock %}
+
+{% block menu-extra-attrs %}{{ block.super }} data-navigation="dropdown-menu"{% endblock %}

@@ -1,0 +1,8 @@
+{% load i18n %}
+{% load regions %}
+
+{% if user.is_authenticated %}
+<div id="sidebar" class="collapse navbar-collapse">
+    {% render_region "sidebar" %}
+</div>
+{% endif %}

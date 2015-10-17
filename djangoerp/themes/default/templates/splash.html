@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
-{% block wrapper %}
-    <div class="ui middle aligned center aligned grid">
-        {% block layout %}
-        {% endblock %}
-    </div>
+{% load menus %}
 
-    {% include "partials/footer.html" %}
+{% block extrastyles %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/splash.css" />
+{% endblock %}
+
+{% block wrapper-class %}animated fadeInDown{% endblock %}
+
+{% block wrapper %}
+    {% render_menu "user_area_not_logged" "menus/partials/tabs.html" %}
+
+    {% block main %}
+    {% endblock %}
 {% endblock %}

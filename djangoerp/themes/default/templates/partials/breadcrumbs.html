@@ -1,19 +1,13 @@
 {% load i18n %}
 
-{% if breadcrumbs %}
+{% if breadcrumbs|length > 1 %}
 {% for crumb, link in breadcrumbs %}
-<div class="link breadcrumb item">
-    {% if forloop.first %}
-        {% if link %}<a href='{{ link }}' title='{% trans crumb %}'>{% endif %}
-            <i class="home icon"></i> {% trans crumb %}
-        {% if link %}</a>{% endif %}
-    {% else %}
-        {% if link %}
-            <a href='{{ link }}' title='{% trans crumb %}'>{% trans crumb %}</a>
+    <li{% if forloop.counter > 1 and forloop.counter < breadcrumbs|length|add:-1 %} class="hidden-xs"{% endif %}>
+        {% if forloop.first %}
+            {% if link %}<a href='{{ link }}' title='{% trans crumb %}'>{% endif %}<i class="fa fa-home"></i> <span class="hidden-xs">{% trans crumb %}</span>{% if link %}</a>{% endif %}
         {% else %}
-            <div class="active item">{% trans crumb %}</div>
+            {% if link %}<a href='{{ link }}' title='{% trans crumb %}'>{% trans crumb %}</a>{% else %}{% trans crumb %}{% endif %}
         {% endif %}
-    {% endif %}
-</div>
+    </li>
 {% endfor %}
 {% endif %}

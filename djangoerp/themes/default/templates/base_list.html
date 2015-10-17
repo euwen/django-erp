@@ -1,0 +1,27 @@
+{% extends "default.html" %}
+
+{% load i18n %}
+{% load introspection %}
+{% load perms %}
+{% load menus %}
+
+{% block meta-title %}
+    {% with model=object_list.model|model_name_plural %}
+    {{ model|capfirst }}
+    {% endwith %}
+{% endblock %}
+
+{% block page-title %}
+    <h1>{% block model-title %}{% with model=object_list.model|model_name_plural %}{{ model|capfirst }}{% endwith %}{% endblock %}</h1>
+    {% with menu_slug=object_list.model|raw_model_name|add:"_list_actions" %}{% render_menu menu_slug "menus/partials/actions.html" %}{% endwith %}
+{% endblock %}
+
+{% block main %}
+    {% block formheader %}<form method="post" action="{{ request.get_full_path }}">{% endblock %}
+        {% csrf_token %}
+        <table class="table {{ object_list.model|model_name_plural }}{% if list_uid %} {{ list_uid }}{% endif %}">
+            {% render_model_list object_list field_list list_template_name list_uid %}
+        </table>
+        {% include "partials/paginator.html" %}
+    </form>
+{% endblock %}

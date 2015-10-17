@@ -1,0 +1,464 @@
+/**
+ *
+ * This file is part of the django ERP project.
+ *
+ * Copyright (C) 2013-2015 Emanuele Bertoldi.
+ * <emanuele.bertoldi@gmail.com>
+ */
+
+
+/* Fonts **********************************************************************/
+
+@import url(font-exo2.css);
+
+
+/* Commons ********************************************************************/
+
+html {
+}
+
+body {
+    font-family: "Exo2",Helvetica,Arial,sans-serif;
+    padding: 82px 0 0 !important;
+    margin: 0px !important;
+}
+a, a:hover, a:link {
+    text-decoration: none;
+}
+
+/* Buttons ********************************************************************/
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    margin-right: 5px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+.btn-circle .fa {
+}
+
+
+/* Forms **********************************************************************/
+
+form {
+    max-width: 760px;
+}
+
+.required-mark {
+    color: red;
+}
+
+form .form-group:last-child {
+    margin-bottom: 0;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    background-color: #fffddd;
+}
+
+form .form-actions {
+    padding-top: 15px;
+    border-top: 2px solid #ddd;
+    text-align: right;
+}
+
+
+/* Tabs & Pills ***************************************************************/
+
+.nav-tabs, .nav-pills {
+    margin-bottom: 15px;
+}
+
+
+/* Page Header ****************************************************************/
+
+.page-header {
+    margin-top: 0;
+    text-align: center;
+    border-bottom-color: #ccc;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+}
+.page-header h1 > small,
+.page-header h2 > small,
+.page-header h3 > small,
+.page-header h4 > small,
+.page-header h5 > small,
+.page-header h6 > small {
+    display: block;
+}
+.page-header .btn-group {
+    margin-bottom: 10px;
+}
+.modal .page-header,
+.panel .page-header {
+    text-align: center;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+.modal .page-header h1,
+.panel .page-header h1 {
+    margin-top: 0;
+}
+.sub-header {
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ddd;
+    margin-bottom: 30px;
+}
+
+
+/* Wells **********************************************************************/
+
+.well {
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+/* Panels *********************************************************************/
+
+.panel {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+
+/* Avatar *********************************************************************/
+
+img.avatar {
+    background-color: #f6f6f6;
+}
+
+
+/* Dashboard ******************************************************************/
+
+.region.dashboard .empty-plugget-space {
+    height: 240px;
+    line-height: 240px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.region.dashboard .plugget.panel {
+    min-height: 240px;
+}
+
+.region.dashboard .plugget.panel .panel-heading .panel-title .btn-group {
+    margin: -10px -8px;
+}
+
+
+/* Header *********************************************************************/
+
+#header {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 82px;
+    z-index: 9999;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+#header .open .dropdown-menu {
+    position: absolute;
+    top: auto;
+    left: auto;
+    right: 0;
+    margin-top: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+#header .open .dropdown-menu a {
+    color: #333;
+}
+#header .open .dropdown-menu .active a {
+    color: #fff;
+}
+#header .open .dropdown-menu a:hover {
+    background-color: #f6f6f6;
+    color: #333;
+}
+#header .open .dropdown-menu .divider {
+    background-color: #e5e5e5;
+}
+#header .navbar-fixed-top {
+    min-height: 40px;
+    margin-bottom: 0;
+    border-bottom: 5px solid #e84c3d;
+}
+#header .navbar-fixed-top .navbar-brand {
+    height: 40px;
+}
+#header .navbar-fixed-top .navbar-nav {
+    display: inline-block;
+    left: 0;
+    right: 0;
+    margin: 0;
+    float: none;
+}
+#header .navbar-fixed-top .navbar-nav.navbar-right {
+    float: right;
+    margin-right: -15px;
+}
+#header .navbar-fixed-top .navbar-toggle {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 0 15px 0 0;
+    border: none;
+    border-radius: 0;
+    background-color: #424a5d;
+    color: #fff;
+}
+#header .navbar-fixed-top .navbar-toggle[aria-expanded="true"] {
+    background-color: #31394c;
+}
+#header .navbar-fixed-top .navbar-brand {
+    display: inline-block;
+    min-width: 40px;
+    margin: 0;
+    padding: 0;
+    background-color: #e84c3d;
+}
+#header .navbar-fixed-top .navbar-brand .gentes-brand {
+    margin-top: 0;
+}
+
+#header .navbar-fixed-top .navbar-nav > li {
+    display: inline;
+    height: 40px;
+}
+#header .navbar-fixed-top .navbar-nav > li > a {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    height: 40px;
+    padding: 10px 15px;
+}
+#header .navbar-fixed-top .navbar-nav > li > a:hover,
+#header .navbar-fixed-top .navbar-toggle:hover {
+    background-color: #31394c;
+}
+#header .navbar-fixed-top .navbar-nav > li > a[aria-expanded="true"],
+#header .navbar-fixed-top .navbar-toggle[aria-expanded="true"] {
+    background-color: #ffd777;
+    color: #31394c;
+}
+
+
+/* Brand **********************************************************************/
+
+#djangoerp-brand {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background: url(../images/logo.png) no-repeat left;
+}
+
+#djangoerp-brand h1,
+#djangoerp-brand h2 {
+    display: none;
+}
+
+
+/* User profile ***************************************************************/
+
+#header #user-profile-link > a {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: -15px;
+}
+#header #user-profile-link .avatar {
+    margin-left: 10px;
+}
+
+
+/* Breadcrumbs ****************************************************************/
+
+#breadcrumbs {
+    position: fixed;
+    top: 45px;
+    width: 100%;
+}
+
+#breadcrumbs ol.breadcrumb {
+    min-height: 37px;
+    padding-left: 55px;
+    margin-bottom: 0;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+}
+
+
+/* Bookmarks ******************************************************************/
+
+#user-bookmarks {
+    position: absolute;
+    left: 0;
+    top: 45px;
+}
+#user-bookmarks .dropdown-toggle {
+    display: inline-block;
+    width: 40px;
+    height: 37px;
+    line-height: 37px;
+    vertical-align: middle;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    color: #333;
+    
+}
+#user-bookmarks .dropdown-toggle:hover {
+    background-color: #ddd;
+}
+#user-bookmarks .dropdown-toggle[aria-expanded="true"] {
+    background-color: #e84c3d;
+    color: #fff;
+}
+#user-bookmarks .open .dropdown-menu {
+    min-width: 200px;
+    left: 0;
+}
+
+
+/* Wrapper ********************************************************************/
+
+#wrapper {
+    height: 100%;
+}
+
+
+/* Content ********************************************************************/
+
+#content {
+    clear: both;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+#content .page-header {
+    margin-top: 0;
+}
+
+
+/* Sidebar ********************************************************************/
+
+#sidebar,
+#sidebar.collapsing {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    z-index: 9999;
+    margin-left: -100%;
+    margin-top: 45px;
+    width: 100%;
+    min-height: 480px;
+    height: 100% !important;
+    background-color: #f6f6f6;
+    border-top: none;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    -webkit-transition: 0.2s ease-in;
+    -moz-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
+}
+
+#sidebar.collapsing,
+#sidebar.collapse.in {
+    margin-left: 0;
+}
+
+#sidebar .region {
+    margin: 0 -15px;
+}
+
+#sidebar li {
+    border-bottom: 1px solid #ddd;
+}
+
+#sidebar li a .fa {
+    float: right;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: -10px;
+    margin-right: -15px;
+    vertical-align: middle;
+    text-align: center;
+    border-left: 1px solid #ddd;
+}
+
+#sidebar li.active a .fa {
+    background-color: #e84c3d;
+    border-left-color: #ffd777;
+    background-color: #ffd777;
+    color: #31394c;
+}
+
+
+/* Animations *****************************************************************/
+
+.animated {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+}
+
+
+/* Small devices (tablets, 768px and up) **************************************/
+
+@media (min-width: 768px) {
+
+    .page-header {
+        text-align: right;
+    }
+    .page-header h1 {
+        text-align: left;
+    }
+    .page-header h1 small {
+        display: inline;
+    }
+    .page-header .btn-group {
+        margin-top: 22px;
+    }
+    #header .navbar-fixed-top .navbar-brand {
+        margin-left: -15px;
+    }
+    #sidebar {
+        width: 240px;
+        height: 100% !important;
+        z-index: 1;
+        margin-top: 82px;
+        margin-left: -200px !important;
+        margin-right: 0;
+        border-right: 1px solid #ccc;
+        border-bottom: none;
+    }
+    #sidebar:hover {
+        margin-left: 0 !important;
+    }
+    #main {
+        min-height: 500px;
+        height: 100%;
+        margin-left: 40px;
+        margin-bottom: -10px;
+        padding: 0 15px;
+    }
+}

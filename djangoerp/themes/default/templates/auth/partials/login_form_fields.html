@@ -1,0 +1,6 @@
+{% extends "partials/form_fields.html" %}
+
+{% block form_hidden_fields %}
+    {{ block.super }}
+    <input type="hidden" name="next" value="{{ next }}" />
+{% endblock %}

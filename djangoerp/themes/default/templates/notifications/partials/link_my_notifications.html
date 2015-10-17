@@ -1,0 +1,11 @@
+{% extends "menus/partials/link_only_icon.html" %}
+
+{% load i18n %}
+
+{% block link-icon %}{% endblock %}
+
+{% block link-title %}
+{% with user.notification_set.unread.count as notification_count %}
+{{ block.super }} <span class="badge notification-counter" title="{% blocktrans %}{{ notification_count }} unread notification(s){% endblocktrans %}"><i class="{{ link.icon }}"></i> {{ notification_count }}</span>
+{% endwith %}
+{% endblock %}

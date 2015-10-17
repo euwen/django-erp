@@ -1,0 +1,87 @@
+{% load i18n %}
+{% load markup %}
+
+<div class="btn-toolbar" data-role="editor-toolbar" data-target="#{{ field.auto_id }}_editor">
+
+  <div class="btn-group">
+    <a data-original-title="Bold (Ctrl/Cmd+B)" class="btn btn-default" data-edit="bold" title="">
+        <i class="fa fa-bold fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Italic (Ctrl/Cmd+I)" class="btn btn-default" data-edit="italic" title="">
+        <i class="fa fa-italic fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Strikethrough" class="btn btn-default" data-edit="strikethrough" title="">
+        <i class="fa fa-strikethrough fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Underline (Ctrl/Cmd+U)" class="btn btn-default" data-edit="underline" title="">
+        <i class="fa fa-underline fa-fw"></i>&nbsp;
+    </a>
+  </div>
+
+  <div class="btn-group">
+    <a data-original-title="Bullet list" class="btn btn-default" data-edit="insertunorderedlist" title="">
+        <i class="fa fa-list-ul"></i>&nbsp;
+    </a>
+    <a data-original-title="Number list" class="btn btn-default" data-edit="insertorderedlist" title="">
+        <i class="fa fa-list-ol fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Reduce indent (Shift+Tab)" class="btn btn-default" data-edit="outdent" title="">
+        <i class="fa fa-outdent fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Indent (Tab)" class="btn btn-default" data-edit="indent" title="">
+        <i class="fa fa-indent fa-fw"></i>&nbsp;
+    </a>
+  </div>
+
+  <div class="btn-group">
+    <a data-original-title="Align Left (Ctrl/Cmd+L)" class="btn btn-default" data-edit="justifyleft" title="">
+        <i class="fa fa-align-left fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Center (Ctrl/Cmd+E)" class="btn btn-default" data-edit="justifycenter" title="">
+        <i class="fa fa-align-center fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Align Right (Ctrl/Cmd+R)" class="btn btn-default" data-edit="justifyright" title="">
+        <i class="fa fa-align-right fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Justify (Ctrl/Cmd+J)" class="btn btn-default" data-edit="justifyfull" title="">
+        <i class="fa fa-align-justify fa-fw"></i>&nbsp;
+    </a>
+  </div>
+
+  <div class="btn-group">
+    <div class="btn-group" role="group">
+        <div class="dropdown">
+            <button data-original-title="Hyperlink" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-link fa-fw"></i>&nbsp;
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" data-navigation="dropdown-menu" role="menu">
+                <div class="input-group">
+                    <input class="form-control" placeholder="URL" data-edit="createLink" type="text">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">{% trans "Add" %}</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a data-original-title="Remove Hyperlink" class="btn btn-default" data-edit="unlink" title="">
+        <i class="fa fa-chain-broken fa-fw"></i>&nbsp;
+    </a>
+  </div>
+
+  <div class="btn-group">
+    <a data-original-title="Undo (Ctrl/Cmd+Z)" class="btn btn-default" data-edit="undo" title="">
+        <i class="fa fa-undo fa-fw"></i>&nbsp;
+    </a>
+    <a data-original-title="Redo (Ctrl/Cmd+Y)" class="btn btn-default" data-edit="redo" title="">
+        <i class="fa fa-repeat fa-fw"></i>&nbsp;
+    </a>
+  </div>
+
+</div>
+
+{{ field|add_class:"hidden" }}
+
+<div id="{{ field.auto_id }}_editor" class="form-control wysiwyg-editor">
+    {% if field.value %}{{ field.value|safe }}{% endif %}
+</div>

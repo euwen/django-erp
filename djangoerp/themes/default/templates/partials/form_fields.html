@@ -1,0 +1,29 @@
+{% load i18n %}
+
+{% block form_errors %}
+    {% if form.is_bound and not form.is_valid %}
+        <p class="text-muted text-center">
+            <i class="fa fa-2x fa-warning"></i>
+        </p>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <i class="fa fa-exclamation"></i> {{ error }}
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block form_hidden_fields %}
+    {% for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+{% endblock %}
+
+{% block form_visible_fields %}
+    {% for field in form.visible_fields %}
+        {% include form_field_template|default:'partials/form_field.html' with field=field %}
+    {% endfor %}
+{% endblock %}

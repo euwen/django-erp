@@ -1,6 +1,6 @@
 {% load regions %}
 
-<div id="{% block region-slug %}{{ region.slug }}-region{% endblock %}" class="{% block region-class %}region{% endblock %}">
+<div class="{% block region-class %}region{% endblock %}" id="{% block region-slug %}{{ region.slug }}-region{% endblock %}">
     {% block region-before-pluggets %}
     {% endblock %}
 

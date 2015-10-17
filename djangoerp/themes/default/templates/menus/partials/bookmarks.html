@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load markup %}
+{% load menus %}
+
+{% for link in links %}
+    {% if link.authorized and link.get_absolute_url %}
+    <li>
+    {% block menu-link %}
+        {% score_link link request.get_full_path as active_css_class %}
+        {% join ' ' active_css_class css_class link.slug|split:'-'|last as style %}
+        {% include link.template_name|default:"menus/partials/link.html" with link=link icon="fa fa-fw fa-star" css=style %}
+    {% endblock %}
+    </li>
+    {% endif %}
+{% endfor %}

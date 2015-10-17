@@ -1,173 +1,72 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load staticfiles %}
 {% load breadcrumbs %}
-{% load avatar %}
 {% load menus %}
-{% load regions %}
-
-{% block extrastyle %}
-    <link rel="stylesheet" href="{% static 'css/default.css' %}"/>
-{% endblock %}
 
 {% block wrapper %}
-    <div id="header" class="ui top fixed inverted menu">
-        <div class="brand header item">
-            {% include "partials/brand.html" %}
-        </div>
-        <div class="date item">
-            <span class="text">
-                <i class="tiny calendar icon"></i>
-                {% now "DATE_FORMAT" %}
-            </span>
-        </div>
-        <div class="nav icon item">
-            <i class="chevron left icon"></i>
-        </div>
-        <div class="sidebar icon item">
-            <i class="bars icon"></i>
-        </div>
-    </div>
+    <header id="header">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header pull-left">
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        {% block brand %}{% include "partials/brand.html" %}{% endblock %}
+                    </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar">
+                        <i class="fa fa-lg fa-bars"></i>
+                        <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                    </button>
+                </div>
+                {% block navbar-menu %}
+                    {% if user.is_authenticated %}{% render_menu "navbar" %}{% endif %}
+                {% endblock %}
+            </div>
+        </nav>
+        <nav id="breadcrumbs">
+            <ol class="breadcrumb">
+                {% block breadcrumbs %}{% add_crumb 'Home' %}{% endblock %}{% render_breadcrumbs %}
+            </ol>
+        </nav>
+        <nav id="user-bookmarks">
+            {% include "partials/user_bookmarks.html" %}
+        </nav>
+    </header>
 
-    <div id="sidebar" class="ui inverted segment">
-        {% block sidebar %}
-        {% render_region "sidebar" "pluggets/partials/region.html" %}
+    <div id="content">
+        {% block layout %}
+        {% include "partials/sidebar.html" %}
+
+        <div id="main">
+            {% include "partials/messages.html" %}
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <header class="page-header animated {% block page-header-anim %}fadeInDown{% endblock %}">
+                            {% block page-header %}
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    {% block page-title %}
+                                    {% endblock %}
+                                </div>
+                                <div class="col-sm-4">
+                                    {% block page-actions %}
+                                    {% endblock %}
+                                </div>
+                            </div>
+                            {% block page-header-extra %}
+                            {% endblock %}
+                            {% endblock %}
+                        </header>
+
+                        <div class="page-content animated {% block page-content-anim %}fadeIn{% endblock %}">
+                            {% block main %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endblock %}
     </div>
-
-    <div id="userarea" class="ui inverted menu">
-        <a class="profile dropdown item" href="{{ user.get_absolute_url }}">
-            {% avatar user.email "32" "mm" "ui avatar image" %} {{ user }}
-        </a>
-        <div class="right menu">
-            <div class="ui notifications bottom right pointing dropdown icon item">
-                <i class="inbox icon"></i>
-                {% with user.notification_set.unread.count as notification_count %}
-                {% if notification_count %}<div class="floating ui red label">{{ notification_count }}</div>{% endif %}
-                <div class="menu">
-                    {% if notification_count %}
-                    {% for notification in user.notification_set.unread.all %}
-                    <div class="ui link item">
-                        <i class="mail icon"></i>
-                        <a class="ui link" href="{{ notification.get_absolute_url }}">{{ notification }}</a>
-                        <small>{{ notification.created|timesince }}</small>
-                    </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="item">{% trans "No unread notifications." %}</div>
-                    {% endif %}
-                    <div class="divider"></div>
-                    <div class="header">
-                        <a title="{% trans 'View all' %}" href="{% url 'notification_list' 'users' user.pk %}">
-                            <i class="list icon"></i>
-                            {% trans "View all" %}
-                        </a>
-                    </div>
-                </div>
-                {% endwith %}
-            </div>
-            <a class="logout icon item" href="{% url 'user_logout' %}">
-                <i class="large power off icon"></i>
-            </a>
-            <div class="ui approve logout basic small modal">
-                <div class="ui icon header">
-                    <i class="power off icon"></i>
-                    {% trans "Confirm logout" %}
-                </div>
-                <div class="content">
-                    <p>{% trans "Are you sure you want to logout?" %}</p>
-                </div>
-                <div class="actions">
-                    <div class="ui red cancel basic button">{% trans "No" %}</div>
-                    <div class="ui green approve basic button">{% trans "Yes" %}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="pusher">
-        <div id="breadcrumbs" class="ui fixed top inverted menu">
-            {% block breadcrumbs %}{% add_crumb 'Home' %}{% endblock %}{% render_breadcrumbs %}
-
-            <div class="right menu">
-                <a class="ui icon item">
-                    <i class="search icon"></i>
-                </a>
-                <a class="ui icon item">
-                    <i class="empty star icon"></i>
-                </a>
-            </div>
-        </div>
-
-        <div id="main" class="ui raised segment">
-            {% block layout %}
-            {% endblock %}
-        </div>
-        
-        {% include "partials/footer.html" %}
-    </div>
-{% endblock %}
-
-{% block onbodyload-semanticui %}
-    $('.ui.dropdown').dropdown();
-
-    $('.ui.message .close').on('click', function() {
-        $(this)
-            .closest('.message')
-            .transition('fade');
-    });
-
-    $('#sidebar .ui.sticky')
-        .sticky({ context: '.pusher' });
-{% endblock %}
-
-{% block onbodyload-djangoerp %}
-    $('#header .brand.item > a')
-        .transition('tada')
-        .hover(
-
-            // Hover in.
-            function(e) {
-
-                if (!$(this).hasClass("visible")) {
-
-                    $(this).transition('tada');
-                }
-            },
-
-            // Hover out.
-            function(e) {
-
-                $(this).transition('clear queue');
-            }
-        );
-
-    $('#header .sidebar.item')
-        .on('click', function(e) {
-            $('#breadcrumbs').toggleClass('visible');
-            $('#sidebar').toggleClass('visible');
-        });
-
-    $('#header .nav.item')
-        .on('click', function(e) {
-            $('#header').toggleClass('collapsed');
-            $('#sidebar').toggleClass('collapsed');
-            $('#userarea').toggleClass('collapsed');
-        });
-
-    $('.logout.item').on('click', function(e) {
-
-        var action = $(this).attr('href');
-
-        e.preventDefault();
-
-        $('.ui.approve.logout.modal')
-            .modal({
-                onApprove : function() {
-                    window.location.href = action;
-                }
-            })
-            .modal('show');
-    });
 {% endblock %}

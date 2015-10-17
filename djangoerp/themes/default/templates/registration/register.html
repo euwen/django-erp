@@ -1,0 +1,15 @@
+{% extends "splash.html" %}
+
+{% load i18n %}
+
+{% block meta-title %}
+{% trans 'Register' %}
+{% endblock %}
+
+{% block bodyclass %}register{% endblock %}
+
+{% block main %}
+<div class="well">
+    {% include "partials/form.html" with form=form form_actions_template="registration/partials/register_form_actions.html" %}
+</div>
+{% endblock %}

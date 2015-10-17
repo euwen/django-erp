@@ -1,0 +1,31 @@
+{% extends "default.html" %}
+
+{% load i18n %}
+{% load menus %}
+{% load models %}
+
+{% block meta-title %}
+    {{ object|striptags|capfirst }}
+{% endblock %}
+
+{% block page-title %}
+    <h1>{% block object-title %}{{ object|striptags|capfirst }}{% endblock %}</h1>
+{% endblock %}
+
+{% block page-actions %}
+    {% with menu_slug=object|raw_model_name|add:"_detail_actions" %}{% render_menu menu_slug "menus/partials/actions.html" %}{% endwith %}
+{% endblock %}
+
+{% block page-header-extra %}
+    {% with menu_slug=object|raw_model_name|add:"_detail_navigation" %}{% render_menu menu_slug "menus/partials/tabs.html" %}{% endwith %}
+{% endblock %}
+
+{% block main %}
+    <table class="properties table">
+        {% if field_list %}
+        {% render_model_details object field_list %}
+        {% else %}
+        {% render_model_details object %}
+        {% endif %}    
+    </table>
+{% endblock %}

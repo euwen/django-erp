@@ -1,0 +1,19 @@
+{% block form-wrapper %}
+    {% with action_url=action|default:request.path %}
+    <form class="form-{{ style|default:'stacked' }}{% if class %} {{ class }}{% endif %}" method="{{ method|default:'post' }}" action="{{ action_url }}{% if next %}{% if action_url|last == '/' %}?{% else %};{% endif %}next={{ next }}{% endif %}{% if back %}{% if action_url|last == '/' %}?{% else %};{% endif %}back={{ back }}{% endif %}"
+        {% if id %}id="{{ id }}"{% endif %}
+        {% if multipart|default:form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+        {% block form-content %}
+            {% if not method == "get" %}{% csrf_token %}{% endif %}
+
+            {% block form-fields %}
+            {% include form_fields_template|default:"partials/form_fields.html" with form_field_template=form_field_template|default:"partials/form_field.html" %}
+            {% endblock %}
+
+            {% block form-actions %}
+            {% include form_actions_template|default:"partials/form_actions.html" %}
+            {% endblock %}
+        {% endblock %}
+    </form>
+    {% endwith %}
+{% endblock %}

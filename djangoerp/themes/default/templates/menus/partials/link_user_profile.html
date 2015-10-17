@@ -1,0 +1,6 @@
+{% extends "menus/partials/link.html" %}
+
+{% load avatar %}
+
+{% block link-title %}<strong>{{ user }}</strong>{% endblock %}
+{% block link-caret %}{{ block.super }} {% avatar user.email 40 %}{% endblock %}

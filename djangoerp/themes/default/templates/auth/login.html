@@ -1,39 +1,16 @@
 {% extends "splash.html" %}
 
 {% load i18n %}
-{% load staticfiles %}
 
-{% block meta_title %}{% trans 'Login' %}{% endblock %}
-
-{% block extrastyle %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+{% block meta-title %}
+{% trans 'Login' %}
 {% endblock %}
 
 {% block bodyclass %}login{% endblock %}
 
-{% block layout %}
-    <div class="ui splash padded raised segment">
-        <img class="ui center aligned image" src="/static/images/logo_splash.png"/>
-        <form class="ui form" method="post" action=".">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}" />
-            {% for field in form %}
-            <div class="{% if field.field.required %}required {% endif %}field">
-                {{ field.label_tag }}
-                {{ field }}
-            </div>
-            {% endfor %}
-            <button type="submit" class="ui right labeled icon right floated button">
-                <i class="right arrow icon"></i>
-                {% trans 'Login' %}
-            </button>
-        </form>
-    </div>
-{% endblock %}
-
-{% block onbodyload-djangoerp %}
-    $('.ui.splash.segment > .ui.image')
-        .hide()
-        .transition('scale in', '2s');
+{% block main %}
+<div class="well">
+    {% include "partials/form.html" with form=form form_fields_template="auth/partials/login_form_fields.html" form_actions_template="auth/partials/login_form_actions.html" %}
+</div>
 {% endblock %}
 

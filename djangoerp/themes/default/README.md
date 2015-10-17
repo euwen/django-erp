@@ -5,12 +5,12 @@ This is the default theme for **django ERP** which offers a clean and modern _Lo
 
 This theme is based on:
 
- * **jQuery**: https://jquery.com/
- * **Semantic UI**: http://semantic-ui.com/
- * **Font Awesome**: https://fortawesome.github.io/Font-Awesome/
+ * **Bootstrap 3**: http://getbootstrap.com/
+ * **Font Awesome icons**: http://fortawesome.github.io/Font-Awesome/
+ * **Font EXO 2**: http://www.fontsquirrel.com/fonts/exo-2
 
 Author's details
 ----------------
 
- * **Copyright:** (c) 2013 Emanuele Bertoldi
+ * **Copyright:** (c) 2013-2015 Emanuele Bertoldi
  * **Email:** <emanuele.bertoldi@gmail.com>

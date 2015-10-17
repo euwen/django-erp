@@ -1,0 +1,128 @@
+{% load i18n %}
+{% load markup %}
+{% load forms %}
+
+{% get_current_language as lang_code %}
+
+{% if not field|is_current_translation_field:lang_code %}
+{% block control_group %}
+    {% if form_group_size %}<div class="{{ form_group_size }}">{% endif %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+        {% if label_size or field_size %}<div class="row">{% endif %}
+            {% block label %}
+                {% if field.name == "image" %}
+                {% elif field|form_field_widget_type != "CheckboxInput" and field|form_field_widget_type != "RadioboxInput" %}
+                    {% if not nolabel and not field.field.widget.is_hidden %}
+                    <label for="{{ field.auto_id }}" class="control-label{% if field.field.required %} required{% endif %}{% if label_size %} {{ label_size }}{% endif %}">
+                        {{ field.label|safe }} {% if translated_fields and field.name in translated_fields %}({{ master_lang }}){% endif %}
+                        {% if field.field.required %}<span class="required-mark">*</span>{% endif %}
+                    </label>
+                    {% endif %}
+                {% else %}
+                    {% if label_size %}<div class="{{ label_size }}"></div>{% endif %}
+                    {% if field_size %}<div class="{{ field_size }}">{% endif %}
+                        <div class="{{ field|form_field_widget_type|slice:':-5'|lower }}">
+                            <label{% if field.field.required %} class="required"{% endif %}>
+                                {{ field }}
+                                {% if not nolabel and not field.field.widget.is_hidden %}
+                                {{ field.label|safe }} {% if translated_fields and field.name in translated_fields %}({{ master_lang }}){% endif %}
+                                {% if field.field.required %}<span class="required-mark">*</span>{% endif %}
+                                {% endif %}
+                            </label>
+                        </div>
+                    {% if field_size %}</div>{% endif %}
+                {% endif %}
+            {% endblock %}
+
+            {% block controls %}
+                {% block widget %}
+                {% if field.name == "image" %}
+                    <figure class="figure figure-md figure-responsive btn btn-default btn-image-file">
+                        {% if field.value %}
+                        <img class="image-upload-preview" alt="{% trans 'Image Upload' %}" src="/media/{{ field.value }}"/>
+                        {% else %}
+                        <span class="text-muted">{% trans "Click to add image" %}</span>
+                        {% endif %}
+                        <input id="{{ field.auto_id }}" name="{{ field.name }}" type="file"/>
+                    </figure>
+                    <span class="image-preview-remove">
+                        <input id="{{ field.name }}-clear_id" name="{{ field.name }}-clear" type="checkbox"{% if not field.value %} disabled="disabled"{% endif %}>
+                        <label{% if not field.value %} class="text-muted"{% endif %}>{% trans "Remove" %}</label>
+                    </span>
+                {% else %}
+                    {% if field_size %}<div class="{{ field_size }}">{% endif %}
+                    {% if field|form_field_widget_type == "TimeInput" %}
+                    <div class="input-group input-timepicker time" id="time_{{ field.id_for_label }}">
+                        {{ field|add_class:"form-control"|slice:"0:-2" }} data-date-format="hh:mm"/>
+                        <span class="input-group-addon"><i class="fa fa-clock"></i></span>
+                    </div>
+                    {% elif field|form_field_widget_type == "DateInput" %}
+                    <div class="input-group input-datepicker date" id="date_{{ field.id_for_label }}">
+                        {{ field|add_class:"form-control"|slice:"0:-2" }} data-date-format="YYYY-MM-DD"/>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    {% elif field|form_field_widget_type == "DateTimeInput" %}
+                    <div class="input-group input-datetimepicker datetime" id="datetime_{{ field.id_for_label }}">
+                        {{ field|add_class:"form-control"|slice:"0:-2" }} data-date-format="YYYY-MM-DD hh:mm"/>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    {% elif field|form_field_widget_type == "Textarea" %}
+                    {% include "partials/form_wysiwyg_editor.html" with field=field %}
+                    {% elif field|form_field_widget_type == "SelectMultiple" %}
+                    {% with empty_list=""|make_list %}
+                    <div class="input-group-multi-select" id="{{ field.name }}">
+                        {% for value, choice in field.field.choices %}
+                        {% if value and value in field.value|default:empty_list %}
+                		<div class="input-group">
+                            <input type="hidden" name="{{ field.html_name }}" value="{{ value }}">
+                            <span class="form-control" id="{{ field.id_for_label }}_{{ value }}">{{ choice }}</span>
+                			<span class="input-group-addon input-group-addon-remove">
+                				<i class="fa fa-remove"></i>
+                			</span>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% if field.value|length < field.field.choices|length %}
+                        <select class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}_select">
+                            {% if not field.field.choices|first|first %}
+                            <option>{{ field.field.choices|first|last }}</option>
+                            {% else %}
+                            <option>---------</option>
+                            {% endif %}
+                            {% for value, choice in field.field.choices %}
+                            {% if value and value not in field.value|default:empty_list %}
+                            <option value="{{ value }}">{% trans choice %}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                        {% endif %}
+                    </div>
+                    {% endwith %}
+                    {% elif field|form_field_widget_type != "CheckboxInput" and field|form_field_widget_type != "RadioboxInput" %}
+                    {{ field|add_class:"form-control" }}
+                    {% endif %}
+                    {% if field_size %}</div>{% endif %}
+                {% endif %}
+                {% endblock %}
+
+                {% block errors %}
+                {% for error in field.errors %}
+                <span class="help-block error"><i class="fa fa-exclamation"></i> {{ error }}</span>
+                {% endfor %}
+                {% endblock %}
+
+                {% block help_text %}
+                {% if field.help_text %}
+                <span class='help-block'>
+                    <i class="fa fa-info-circle"></i>
+                    {{ field.help_text|safe }}
+                </span>
+                {% endif %}
+                {% endblock %}
+            {% endblock %}
+        {% if label_size or field_size %}</div>{% endif %}
+    </div>
+    {% if form_group_size %}</div>{% endif %}
+{% endblock %}
+{% endif %}
+

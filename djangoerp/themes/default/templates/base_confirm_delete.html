@@ -1,0 +1,19 @@
+{% extends "base_form.html" %}
+
+{% load i18n %}
+{% load introspection %}
+
+{% block meta-title %}
+    {% blocktrans with object|model_name as model %}Delete {{ model }}{% endblocktrans %}
+{% endblock %}
+
+{% block page-title %}
+    <h1>
+        {% block object-title %}{{ object|striptags|capfirst }}{% endblock %}
+        <small>{% block subtitle %}{% blocktrans with object|model_name as model %}Delete {{ model }}{% endblocktrans %}{% endblock %}</small>
+    </h1>
+{% endblock %}
+
+{% block main %}
+    {% include form.template_name|default:"partials/confirm_delete_form.html" with form=form %}
+{% endblock %}

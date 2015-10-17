@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load markup %}
+{% load menus %}
+
+<p id="{{ slug }}-menu" class="btn-group actions" role="group">
+{% for link in links %}
+    {% if link.authorized and link.get_absolute_url %}
+    {% block menu-link %}
+        {% score_link link request.get_full_path as active_css_class %}
+        {% join ' ' active_css_class css_class link.slug|split:'-'|last as style %}
+        {% include "menus/partials/link_action.html" with link=link css=style %}
+    {% endblock %}
+    {% endif %}
+{% endfor %}
+</p>

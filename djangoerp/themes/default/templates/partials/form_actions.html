@@ -1,0 +1,14 @@
+{% extends "partials/form_only_submit_actions.html" %}
+
+{% load i18n %}
+
+{% block form-buttons %}
+    {% block form-buttons-cancel %}
+    <a data-dismiss="modal" class="btn btn-danger" href="{% block form-cancel-button-link %}{% if object %}{{ object.get_absolute_url }}{% else %}{% url 'home' %}{% endif %}{% endblock %}">
+        {% block form-cancel-button-icon %}<i class="fa fa-times"></i>{% endblock %}
+        {% block form-cancel-button-label %}{% trans "Cancel" %}{% endblock %}
+    </a>
+    {% endblock %}
+    {% block form-buttons-spacer %}{% endblock %}
+    {% block form-buttons-submit %}{{ block.super }}{% endblock %}
+{% endblock %}

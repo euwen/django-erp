@@ -1,0 +1,23 @@
+{% extends "partials/form_actions.html" %}
+
+{% load i18n %}
+
+{% block form-buttons-spacer %}
+    {% if wizard.steps.prev %}
+    <button class="btn btn-default" title="{% trans 'Previous step' %}" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">
+        <i class="fa fa-chevron-left"></i>
+        {% trans "Previous" %}
+    </button>
+    {% endif %}
+{% endblock %}
+
+{% block form-buttons-submit %}
+    {% if wizard.steps.next %}
+    <button class="btn btn-default" title="{% trans 'Next step' %}" type="submit">
+        {% trans 'Next' %}
+        <i class="fa fa-chevron-right"></i>
+    </button>
+    {% else %}
+    {{ block.super }}
+    {% endif %}
+{% endblock %}

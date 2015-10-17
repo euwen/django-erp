@@ -1,0 +1,36 @@
+/**
+ *
+ * This file is part of the django ERP project.
+ *
+ * Copyright (C) 2013-2015 Emanuele Bertoldi.
+ * <emanuele.bertoldi@gmail.com>
+ */
+
+
+/* Commons ********************************************************************/
+
+body {
+    padding: 0 !important;
+    background-color: #424a5d;
+}
+
+
+/* Wrapper ********************************************************************/
+
+#wrapper {
+    display: block;
+    width: 320px;
+    margin: 0 auto;
+    padding: 210px 15px 10px;
+    overflow: auto;
+    background: #f6f6f6 url(../images/logo-splash.png) no-repeat center 30px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+#wrapper .nav-tabs>li.active>a,
+#wrapper .nav-tabs>li.active>a:hover,
+#wrapper .nav-tabs>li.active>a:focus {
+    background-color: #f6f6f6;
+}

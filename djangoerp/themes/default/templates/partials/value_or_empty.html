@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load markup %}
+
+{% trans value as translated_value %}
+{% trans "Not specified" as not_specified %}
+
+{% if value.get_absolute_url %}
+    <a href="{{ value.get_absolute_url }}" title="{{ translated_value }}">{{ translated_value }}</a>
+{% elif value|typeof == 'bool' %}
+    <i class="fa fa-{% if value %}check{% else %}times{% endif %}"></i>
+{% elif value|typeof == "float" %}
+    {{ value|floatformat:2 }}
+{% elif value %}
+    {{ translated_value }}
+{% else %}
+    <span class="text-muted">{{ empty_label|default:not_specified }}</span>
+{% endif %}

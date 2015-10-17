@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load perms %}
+
+<div id="{{ plugget.slug }}-plugget" class="{% block plugget-css %}panel panel-default plugget {{ plugget.slug }}{% endblock %}">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <div class="row">
+                <div class="col-xs-8">
+                    {% block plugget-icon %}<i class="fa fa-th-large"></i>{% endblock %}
+                    {% block plugget-title %}<strong>{% if plugget.title %}{% trans plugget.title %}{% else %}{% trans plugget.template.title %}{% endif %}</strong>{% endblock %}
+                </div>
+                <div class="col-xs-4 text-right">
+                    {% if plugget.region|user_has_perm:"pluggets.change_region" %}
+                    <div class="btn-group">
+                        {% if plugget|user_has_perm:"pluggets.change_plugget" %}
+                        <a class="btn btn-default btn-sm" title="{% trans 'Edit' %}"  href="{{ plugget.get_edit_url }}">
+                            <i class="fa fa-pencil"></i>
+                            <span class="sr-only">{% trans "Edit" %}</span>
+                        </a>
+                        {% endif %}
+                        {% if plugget|user_has_perm:"pluggets.delete_plugget" %}
+                        <a class="btn btn-default btn-sm" title="{% trans 'Delete' %}"  href="{{ plugget.get_delete_url }}">
+                            <i class="fa fa-trash-o"></i>
+                            <span class="sr-only">{% trans "Delete" %}</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block plugget-body %}
+    <div class="panel-body">
+        {% block plugget-content %}
+        {% if text %}{% trans text %}{% else %}{% include "elements/empty.html" %}{% endif %}
+        {% endblock %}
+    </div>
+    {% endblock %}
+</div>

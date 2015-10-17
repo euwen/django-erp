@@ -3,23 +3,29 @@
 {% load i18n %}
 {% load perms %}
 
-{% block region-class %}ui {{ block.super }} dashboard three column doubling stackable grid{% endblock %}
+{% block region-class %}{{ block.super }} dashboard{% endblock %}
+
+{% block region-before-pluggets %}
+    <div class="row">
+{% endblock %}
 
 {% block region-plugget %}
-    <div class="column">
-        {{ block.super }}
-    </div>
+        <div class="col-md-6 col-lg-4">
+            {{ block.super }}
+        </div>
 {% endblock %}
 
 {% block region-after-pluggets %}
-    <div class="column">
-        <p class="empty-plugget-space">
-            {% if region|user_has_perm:"pluggets.change_region" and perms.pluggets.add_plugget %}
-            <a class="ui circular icon button" title="{% trans 'Add plugget' %}" href="{% url 'plugget_add' region.slug %}">
-                <i class="plus icon"></i>
-            </a>
-            {% trans "Click to add a plugget" %}</span>
-            {% endif %}
-        </p>
+        <div class="col-md-6 col-lg-4">
+            <p class="empty-plugget-space">
+                {% if region|user_has_perm:"pluggets.change_region" and perms.pluggets.add_plugget %}
+                <a class="btn btn-primary btn-circle" title="{% trans 'Add plugget' %}" href="{% url 'plugget_add' region.slug %}">
+                    <i class="fa fa-lg fa-plus"></i>
+                    <span class="sr-only">{% trans 'Add' %}</span>
+                </a>
+                <span class="text-muted">{% trans "Click to add a plugget" %}</span>
+                {% endif %}
+            </p>
+        </div>
     </div>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="form-group form-actions">
+    {% block form-buttons %}
+        {% block form-buttons-submit %}
+        <button class="btn btn-large btn-primary" type="submit">
+            <i class="fa fa-{% block form-submit-button-icon %}check{% endblock %}"></i>
+            {% block form-buttons-submit-label %}{% trans "Submit" %}{% endblock %}
+        </button>
+        {% endblock %}
+    {% endblock %}
+</div>

@@ -1,0 +1,12 @@
+{% extends "partials/form.html" %}
+
+{% load i18n %}
+{% load introspection %}
+
+{% block form-content %}
+    <div class="alert">
+        <h3>{% block deletion-message %}{% blocktrans with object|model_name as model %}Are you sure you want to <strong>delete</strong> this {{ model }}?{% endblocktrans %}{% endblock %}</h3>
+        <p>Please, keep in mind this operation is <strong>irreversible</strong>...</p>
+    </div>
+    {{ block.super }}
+{% endblock %}
