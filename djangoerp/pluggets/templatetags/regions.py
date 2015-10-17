@@ -75,7 +75,7 @@ def render_plugget(context, plugget_pk, template_name=None):
                 pass
         if isinstance(func, collections.Callable):
             context = func(context)
-        return render_to_string(template_name or plugget.template, {'plugget': plugget}, context)
+        return render_to_string(template_name or plugget.template_name or settings.PLUGGET_DEFAULT_TEMPLATE, {'plugget': plugget}, context)
             
     except ObjectDoesNotExist:
         pass
@@ -91,7 +91,7 @@ def render_region(context, region_slug, template_name=None):
      * region_slug -- Univoque slug which identifies the region that should be
                       rendered.
      * template_name -- Template to be used to render the region.
-                        [default: pluggets/region.html] 
+                        [default: None] 
     
     Example usage: {% render_region region_slug template_name %}
     """    

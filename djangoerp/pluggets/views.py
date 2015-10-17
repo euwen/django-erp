@@ -193,7 +193,7 @@ class PluggetWizard(SetCancelUrlMixin, SessionWizardView):
             self.instance.source = source_uid
             self.instance.title = title
             self.instance.context = context
-            self.instance.template = source['default_template']
+            self.instance.template = source['default_template'] or ""
             self.instance.description = source['description']
             self.instance.save()
             messages.success(self.request, _("The plugget was updated successfully."))
@@ -206,7 +206,7 @@ class PluggetWizard(SetCancelUrlMixin, SessionWizardView):
                 title=title,
                 context=context,
                 description=source['description'],
-                template=source['default_template'],
+                template_name=source['default_template'] or "",
                 sort_order=region.pluggets.count()
             )
             messages.success(self.request, _("The plugget was created successfully."))

@@ -18,3 +18,4 @@ __version__ = '0.0.5'
 
 
 REGION_DEFAULT_TEMPLATE = "pluggets/partials/region.html"
+PLUGGET_DEFAULT_TEMPLATE = "pluggets/partials/base_plugget.html"

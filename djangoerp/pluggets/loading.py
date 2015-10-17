@@ -83,7 +83,7 @@ class PluggetSourceCache(object):
                 
         self.discovered = True
 
-    def register_plugget_source(self, func, title=None, description=None, template="pluggets/base_plugget.html", form=None):
+    def register_plugget_source(self, func, title=None, description=None, template_name=None, form=None):
         """Register a new plugget source.
         
         A plugget source is identified by:
@@ -94,15 +94,15 @@ class PluggetSourceCache(object):
                     (default: title specified in func's docstring or its name)
          * description -- A description of purpose of the plugget [optional].
                           (default: the remaining part of func's docstring)
-         * template -- Path of template that must be used to render the plugget.
+         * template_name -- Path of template that must be used to render the plugget.
          * form -- The form to be used for plugget customization.
         
         Please note that title must be unique because it's used as key in the
         register dictionary and is the univoque identifier of a specific source.
         """
-        self.register(func, title, description, template, form)
+        self.register(func, title, description, template_name, form)
 
-    def register_simple_plugget_source(self, title, description="A simple plugget.", template="pluggets/base_plugget.html", form=None):
+    def register_simple_plugget_source(self, title, description="A simple plugget.", template_name=None, form=None):
         """Register a new simplified plugget source.
         
         This is a convenient function to simplify registration of plugget sources
@@ -112,13 +112,13 @@ class PluggetSourceCache(object):
                     old plugget source will be replaced by new one.
          * description -- A description of purpose of the plugget [optional].
                           (default: default description string)
-         * template -- Path of template that must be used to render the plugget.
+         * template_name -- Path of template that must be used to render the plugget.
          * form -- The form to be used for plugget customization.
         
         Please note that title must be unique because it's used as key in the
         register dictionary and is the univoque identifier of a specific source.
         """
-        self.register(None, title, description, template, form)
+        self.register(None, title, description, template_name, form)
         
     def get_plugget_sources(self, force_discovering=False):
         """Returns the list of all registered plugget sources.
