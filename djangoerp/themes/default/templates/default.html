@@ -145,16 +145,23 @@
 
     $('#header .sidebar.item')
         .on('click', function(e) {
-            $('#breadcrumbs').toggleClass('visible');
-            $('#sidebar').toggleClass('visible');
+            $(this)
+                .toggleClass('active');
+            $('#breadcrumbs')
+                .toggleClass('visible');
+            $('#sidebar')
+                .toggleClass('visible');
         });
 
     $('#header .nav.item')
         .on('click', function(e) {
-            $('#header').toggleClass('collapsed');
-            $('#sidebar').toggleClass('collapsed');
-            $('#userarea').toggleClass('collapsed');
-        });
+            $('#header')
+                .toggleClass('collapsed');
+            $('#sidebar')
+                .toggleClass('collapsed');
+            $('#userarea')
+                .toggleClass('collapsed');
+        });      
 
     $('.logout.item').on('click', function(e) {
 

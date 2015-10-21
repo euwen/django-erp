@@ -41,9 +41,20 @@
     height: 100%;
 }
 
-#sidebar {
-    display: none;
+#sidebar,
+#breadcrumbs {
+    display: flex;
     position: fixed;
+    left: -100%;
+    transition: left 0.5s;
+}
+
+#sidebar.visible,
+#breadcrumbs.visible {
+    left: 0;
+}
+
+#sidebar {
     z-index: 101;
     margin: 0;
     padding: 0;
@@ -56,9 +67,9 @@
     width: 100%;
 }
 
-#sidebar.visible,
 #breadcrumbs.visible {
     display: flex;
+    
 }
 
 #userarea {
@@ -89,9 +100,7 @@
 }
 
 #breadcrumbs {
-    display: none;
     top: 55px;
-    left: 0;
     right: 0;
     height: 55px;
     margin-left: inherit;
@@ -102,6 +111,10 @@
 
 #breadcrumbs .breadcrumb.item {
     display: none;
+}
+
+#breadcrumbs .breadcrumb.item:first-child {
+    display: flex;
 }
 
 .ui.notifications.dropdown.item > .menu {
@@ -198,8 +211,13 @@
         display: flex;
     }
 
+    #sidebar,
+    #breadcrumbs {
+        left: 0;
+        transition: left 0s;
+    }
+
     #sidebar {
-        display: flex;
         top: 55px;
     }
 
@@ -211,9 +229,7 @@
     }
 
     #breadcrumbs {
-        display: flex;
         width: auto;
-        left: 0;
         top: 0;
         background-color: #fff;
     }
