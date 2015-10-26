@@ -18,3 +18,4 @@ __version__ = '0.0.5'
 
 
 MENU_DEFAULT_TEMPLATE = "menus/partials/menu.html"
+BOOKMARKS_DEFAULT_TEMPLATE = "menus/partials/menu_bookmarks.html"

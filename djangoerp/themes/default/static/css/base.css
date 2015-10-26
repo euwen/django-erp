@@ -16,6 +16,11 @@ a:hover {
     text-align: center;
 }
 
+.ui.menu .dropdown.item > .menu {
+    min-width: 280px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
 .ui.internal.pointing.menu .active.item:after,
 .ui.internal.pointing.menu .active.item:hover:after,
 .ui.vertical.internal.pointing.menu .active.item:after,

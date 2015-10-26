@@ -98,7 +98,7 @@ def render_menu(context, slug, html_template=None, css_class=None):
 def get_user_bookmarks(context):
     """Returns the bookmark menu for the current logged user.
     
-    Example tag usage: {% get_user_bookmarks %}
+    Example tag usage: {% get_user_bookmarks [as ...] %}
     """
     user = context.get('user', None)
     if isinstance(user, get_user_model()) and user.pk:
@@ -114,7 +114,7 @@ def render_user_bookmarks(context, css_class=None):
     """
     user = context.get('user', None)
     if isinstance(user, get_user_model()) and user.pk:
-        return _render_menu("user_%d_bookmarks" % user.pk, context, None, css_class)
+        return _render_menu("user_%d_bookmarks" % user.pk, context, settings.BOOKMARKS_DEFAULT_TEMPLATE, css_class)
     return ""
 
 

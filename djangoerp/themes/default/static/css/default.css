@@ -119,8 +119,6 @@
 
 .ui.notifications.dropdown.item > .menu {
     right: -2em !important;
-    min-width: 280px;
-    box-shadow: 0 5px 10px rgba(0,0,0,.3);
 }
 
 .ui.notifications.bottom.right.pointing.dropdown>.menu:after {
