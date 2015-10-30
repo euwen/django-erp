@@ -3,12 +3,18 @@ body {
     background-color: #c8c8c9;
 }
 
-a {
+a,
+.ui.breadcrumb a {
     color: #db2828;
 }
 
-a:hover {
+a:hover,
+.ui.breadcrumb a:hover {
     color: #bb0808;
+}
+
+a:focus {
+    outline: none;
 }
 
 .ui.modal,
@@ -17,8 +23,20 @@ a:hover {
 }
 
 .ui.menu .dropdown.item > .menu {
-    min-width: 280px;
+    min-width: 200px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.ui.menu .dropdown.center.item > .menu,
+.ui.menu .dropdown.center.item > .animating.menu {
+    left: 50% !important;
+    -webkit-transform: translate(-50%) !important;
+    transform: translate(-50%) !important;
+}
+
+.ui.menu .dropdown.item > .menu > .item > .description {
+    margin-left: auto;
+    padding-left: 1em;
 }
 
 .ui.internal.pointing.menu .active.item:after,

@@ -2,18 +2,17 @@
 
 {% if breadcrumbs %}
 {% for crumb, link in breadcrumbs %}
-<div class="link breadcrumb item">
-    {% if forloop.first %}
-        {% if link %}<a href='{{ link }}' title='{% trans crumb %}'>{% endif %}
-            <i class="home icon"></i> {% trans crumb %}
-        {% if link %}</a>{% endif %}
+    {% if not forloop.first %}<div class="divider">/</div>{% endif %}
+    {% if link %}
+    <a class="ui section" href="{{ link }}" title="{% trans crumb %}">
     {% else %}
-        {% if link %}
-            <a href='{{ link }}' title='{% trans crumb %}'>{% trans crumb %}</a>
-        {% else %}
-            <div class="active item">{% trans crumb %}</div>
-        {% endif %}
+    <div class="active section" title="{% trans crumb %}">
     {% endif %}
-</div>
+        {% trans crumb %}
+    {% if link %}
+    </a>
+    {% else %}
+    </div>
+    {% endif %}
 {% endfor %}
 {% endif %}

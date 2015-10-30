@@ -2,22 +2,20 @@
 
 <div class="menu">
     <div class="header">
-        <a title="{% trans 'Bookmark this page' %}" href="{% url 'bookmark_add' %}">
-            <i class="plus icon"></i>
-            {% trans "Add" %}
-        </a>
+        {% trans "Bookmarks" %}
     </div>
     <div class="divider"></div>
+    <a class="ui item" title="{% trans 'Bookmark this page' %}" href="{% url 'bookmark_add' %}">
+        <i class="plus icon"></i>
+        {% trans "Add" %}
+    </a>
     {% if menu.links.exist %}
+    <div class="divider"></div>
     {% include "menus/partials/menu_only_links.html" %}
-    {% else %}
-    <div class="item">{% trans "No bookmarks." %}</div>
     {% endif %}
     <div class="divider"></div>
-    <div class="header">
-        <a title="{% trans 'View all' %}" href="{% url 'bookmark_list' %}">
-            <i class="list icon"></i>
-            {% trans "View all" %}
-        </a>
-    </div>
+    <a class="ui item" title="{% trans 'View all' %}" href="{% url 'bookmark_list' %}">
+        <i class="list icon"></i>
+        {% trans "View all" %}
+    </a>
 </div>
