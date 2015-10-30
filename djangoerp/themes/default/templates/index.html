@@ -5,7 +5,7 @@
 
 {% block meta-title %}
     {% first_region_for user as user_dashboard %}
-    {{ user_dashboard.title }}
+    {{ user_dashboard.title }} | {{ block.super }}
 {% endblock %}
 
 {% block page-title %}

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load staticfiles %}
 
-{% block meta_title %}{% trans 'Login' %}{% endblock %}
+{% block meta-title %}{% trans 'Login' %} | {{ block.super }}{% endblock %}
 
 {% block extrastyle %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}"/>

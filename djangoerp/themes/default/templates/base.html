@@ -14,7 +14,7 @@
         <meta name="viewport" content="{% block meta-viewport %}width=device-width, initial-scale=1{% endblock %}">
 
         <!-- Site Properities -->
-	    <title>{% trans "django ERP" %} {% block meta-title %}{% endblock %}</title>
+	    <title>{% block meta-title %}{% trans "django ERP" %}{% endblock %}</title>
         <link rel="shortcut icon" href="{% block meta-favicon %}{% static 'favicon.ico' %}{% endblock %}">
         <link rel="stylesheet" href="{% static 'css/semantic.min.css' %}"/>
         <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
