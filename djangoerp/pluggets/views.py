@@ -161,6 +161,7 @@ class PluggetWizard(SetCancelUrlMixin, SessionWizardView):
         context.update({'object': self.instance, 'region': self.region})
         if self.steps.current == '1':
             context.update({
+                "plugget_title": self.source['source_uid'],
                 "plugget_description": self.source['description'],
             })
         return context
