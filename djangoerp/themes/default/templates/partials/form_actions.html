@@ -1,0 +1,16 @@
+{% extends "partials/form_only_submit_actions.html" %}
+
+{% load i18n %}
+
+{% block form-buttons %}
+    {% block form-buttons-submit %}{{ block.super }}{% endblock %}
+    {% block form-buttons-cancel %}
+    <a
+        class="ui icon left floated button"
+        href="{% block form-cancel-button-link %}{% if object %}{{ object.get_absolute_url }}{% else %}{% url 'home' %}{% endif %}{% endblock %}"
+    >
+        <i class="{% block form-cancel-button-icon %}cancel icon{% endblock %}"></i>
+        {% block form-cancel-button-label %}{% trans "Cancel" %}{% endblock %}
+    </a>
+    {% endblock %}
+{% endblock %}

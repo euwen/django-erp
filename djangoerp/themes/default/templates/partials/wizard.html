@@ -1,0 +1,17 @@
+{% extends "partials/form.html" %}
+
+{% block form-fields %}
+    {{ wizard.management_form }}
+    {% if wizard.form.forms %}
+    {{ wizard.form.management_form }}
+    {% for form in wizard.form.forms %}
+        {% include "partials/form_fields.html" with form=form %}
+    {% endfor %}
+    {% else %}
+    {% include "partials/form_fields.html" with form=wizard.form %}
+    {% endif %}
+{% endblock %}
+
+{% block form-actions %}
+    {% include "partials/wizard_form_actions.html" with wizard=wizard %}
+{% endblock %}

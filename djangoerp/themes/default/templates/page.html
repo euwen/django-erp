@@ -2,18 +2,22 @@
 
 {% block layout %}
     <header class="ui page-header stackable grid">
-        {% block page-header %}
-        <div class="twelve wide column">
-            {% block page-title %}
-            {% endblock %}
-        </div>
+        <div class="row">
+            {% block page-header %}
+            <div class="twelve wide column">
+                {% block page-title %}
+                {% endblock %}
+            </div>
 
-        <div class="four wide column">
-            {% block page-actions %}
+            <div class="four wide column right aligned">
+                {% block page-actions %}
+                {% endblock %}
+            </div>
             {% endblock %}
         </div>
-        {% endblock %}
     </header>
+
+    <div class="ui clearing divider"></div>
 
     {% block main %}
     {% endblock %}

@@ -1,3 +1,12 @@
+#messages {
+    position: fixed;
+    top: calc(50px - 2em);
+    right: 1em;
+    width: calc(100% - 2em);
+    max-width: 40em;
+    z-index: 103;
+}
+
 #header,
 #sidebar {
     width: 100%;
@@ -9,7 +18,6 @@
 }
 
 #header .item {
-    justify-content: space-around;
 }
 
 #header .brand.item a {
@@ -48,8 +56,10 @@
     z-index: 10;
     margin: 0;
     padding: 0;
+    border-bottom: 5px solid #db2828;
     border-radius: 0;
-    transition: left 0.5s;
+    -webkit-transition: left 200ms;
+    transition: left 200ms;
 }
 
 #sidebar.visible {
@@ -72,12 +82,27 @@
 #main {
     min-height: 100%;
     margin: 50px 0 0;
+    padding-bottom: 2em;
+    background-color: #fbfbfc;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-#main header.ui.page-header .column {
-    text-align: center;
+#main .ui.page-header,
+#main .ui.page-header+.ui.divider {
+    margin-left: -1em !important;
+    margin-right: -1em !important;
+}
+
+#main .ui.page-header {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1rem;
+    background-color: #fff;
+}
+
+#main .ui.page-header .row .column {
+    padding-bottom: 0 !important;
 }
 
 #userarea {
@@ -85,7 +110,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: 102;
     margin: 0;
     border-top: 1px solid rgba(255,255,255,.15);
 }
@@ -115,40 +140,31 @@
     background-color: #db2828;
 }
 
-.region.dashboard .empty-plugget-space {
-    height: 240px;
-    line-height: 240px;
-    border: 2px dashed #ddd;
-    border-radius: 10px;
-    text-align: center;
-    vertical-align: middle;
-    color: rgba(0,0,0,.6);
-}
-
-.region.dashboard .plugget {
-    min-height: 240px;
-}
-
-.region.dashboard .plugget .content {
-    flex-grow: 999999;
-}
-
-.region.dashboard .plugget .content:first-child,
-.region.dashboard .plugget .extra.content {
-    flex-grow: 1;
-}
-
 #footer {
     padding-bottom: 110px;
 }
 
-/* Very small devices (phones, 480px and up) **********************************/
+/* Very very small devices (phones, 480px and up) *****************************/
 
 @media (min-width: 480px) {
 
     #userarea .breadcrumb.item {
         display: flex;
         flex-grow: 2;
+    }
+
+    #userarea .breadcrumb.item .divider,
+    #userarea .breadcrumb.item .section:not(:last-child) {
+        display: none;
+    }
+}
+
+/* Very small devices (phones, unitl 767px) ***********************************/
+
+@media (max-width: 767px) {
+
+    #main .ui.page-header .column {
+        text-align: center;
     }
 }
 
@@ -161,14 +177,30 @@
         flex-grow: 15;
     }
 
-    #main header.ui.page-header .column {
-        text-align: inherit;
+    #userarea .breadcrumb.item .divider,
+    #userarea .breadcrumb.item .section:not(:last-child) {
+        display: inline-block;
+    }
+
+    #main .ui.page-header,
+    #main .ui.page-header+.ui.divider {
+        margin-left: -2em !important;
+        margin-right: -2em !important;
+    }
+
+    #main .ui.page-header .row {
+        padding-bottom: 0;
     }
 }
 
 /* Medium devices (desktops, 992px and up) ************************************/
 
 @media (min-width: 992px) {
+
+    #header {
+        -webkit-transition: width 200ms;
+        transition: width 200ms;
+    }
 
     #header,
     #sidebar {
@@ -177,7 +209,7 @@
     }
 
     #header.collapsed {
-        width: 200px;
+        width: 193px;
     }
 
     #header.collapsed .date.item .label {
@@ -189,24 +221,27 @@
     }
 
     #sidebar {
+        left: 0;
         bottom: 0;
     }
 
     #sidebar+.pusher,
     #sidebar+.pusher #userarea {
         margin-left: 280px;
+        -webkit-transition: margin 200ms;
+        transition: margin 200ms;
     }
 
-    #sidebar.collapsed {
-        display: none;
+    #header.collapsed+#sidebar {
+        left: -280px;
     }
 
-    #sidebar.collapsed+.pusher {
+    #header.collapsed+#sidebar+.pusher {
         margin-left: 0;
     }
 
-    #sidebar.collapsed+.pusher #userarea {
-        margin-left: 200px;
+    #header.collapsed+#sidebar+.pusher #userarea {
+        margin-left: 193px;
     }
 
     #header .sidebar.item {
@@ -215,11 +250,6 @@
 
     #header .nav.item {
         display: flex;
-    }
-
-    #sidebar {
-        left: 0;
-        transition: left 0s;
     }
 
     #userarea {
@@ -267,6 +297,15 @@
 
     #main {
         padding: 2em;
+    }
+
+    #main .ui.page-header {
+        margin-top: -2em;
+        padding-top: 1em;
+    }
+
+    #main .ui.page-header .row {
+        padding-top: 0;
     }
 }
 

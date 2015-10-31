@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="form-actions">
+    {% block form-buttons %}
+        {% block form-buttons-submit %}
+        <button class="ui right floated red button" type="submit">
+            <i class="{% block form-submit-button-icon %}check icon{% endblock %}"></i>
+            {% block form-buttons-submit-label %}{% trans "Submit" %}{% endblock %}
+        </button>
+        {% endblock %}
+    {% endblock %}
+</div>

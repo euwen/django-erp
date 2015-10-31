@@ -1,0 +1,19 @@
+{% extends "partials/form_actions.html" %}
+
+{% load i18n %}
+
+{% block form-buttons-submit %}
+    {% if wizard.steps.next %}
+    <button class="ui right floated red button" title="{% trans 'Next step' %}" type="submit">
+        {% trans 'Next' %}
+        <i class="right chevron icon"></i>
+    </button>
+    {% else %}
+    {{ block.super }}
+    {% endif %}
+    {% if wizard.steps.prev %}
+    <button class="ui right floated icon button" title="{% trans 'Previous step' %}" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">
+        <i class="left chevron icon"></i>
+    </button>
+    {% endif %}
+{% endblock %}

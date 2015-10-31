@@ -1,16 +1,25 @@
 {% extends "page.html" %}
 
 {% load i18n %}
+{% load perms %}
 {% load regions %}
 
 {% block meta-title %}
     {% first_region_for user as user_dashboard %}
-    {{ user_dashboard.title }} | {{ block.super }}
+    {{ user_dashboard.title }} | 
 {% endblock %}
 
 {% block page-title %}
     {% first_region_for user as user_dashboard %}
     <h1>{{ user_dashboard.title }}</h1>
+{% endblock %}
+
+{% block page-actions %}
+    {% first_region_for user as user_dashboard %}
+    <a class="ui icon labeled button" href="{% url 'plugget_add' user_dashboard.slug %}">
+        <i class="plus icon"></i>
+        {% trans "Add" %}
+    </a>
 {% endblock %}
 
 {% block main %}

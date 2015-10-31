@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load staticfiles %}
 
-{% block meta-title %}{% trans 'Login' %} | {{ block.super }}{% endblock %}
+{% block meta-title %}{% trans 'Login' %} | {% endblock %}
 
 {% block extrastyle %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
@@ -14,18 +14,13 @@
 {% block layout %}
     <div class="ui splash padded raised segment">
         <img class="ui center aligned image" src="/static/images/logo_splash.png"/>
-        <form class="ui form" method="post" action=".">
+        <form class="ui {% if form.errors %}error {% endif %}form" method="post" action=".">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
-            {% for field in form %}
-            <div class="{% if field.field.required %}required {% endif %}field">
-                {{ field.label_tag }}
-                {{ field }}
-            </div>
-            {% endfor %}
-            <button type="submit" class="ui right labeled icon right floated button">
+            {% include "partials/form_fields.html" with form=form %}
+            <button type="submit" class="ui right labeled icon right floated red button">
                 <i class="right arrow icon"></i>
-                {% trans 'Login' %}
+                {% block form-buttons-submit-label %}{% trans 'Login' %}{% endblock %}
             </button>
         </form>
     </div>

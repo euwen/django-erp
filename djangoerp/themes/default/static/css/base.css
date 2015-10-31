@@ -17,6 +17,15 @@ a:focus {
     outline: none;
 }
 
+.ui.compact.button,
+.ui .compact.button,
+.ui.compact > .button,
+.ui .compact > .button {
+    background: transparent;
+    border: none;
+    margin: 0;
+}
+
 .ui.modal,
 .ui.modal > .actions {
     text-align: center;
@@ -58,9 +67,50 @@ a:focus {
     background-color: #3d3e3f;
 }
 
-.ui.stackable.grid {
-    margin-left: -14px !important;
-    margin-right: -14px !important;
+.ui.attached.compact {
+    width: 100%;
+    max-width: 50em;
+}
+
+.ui.form .field input,
+.ui.form .field textarea,
+.ui.form .field select,
+.ui.form .field .dropdown.selection {    
+}
+
+.region.dashboard {
+    margin-top: 0 !important;
+}
+
+.region.dashboard .empty-plugget-space {
+    height: 240px;
+    line-height: 240px;
+    border: 2px dashed rgba(0,0,0,.2);
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(0,0,0,.6);
+}
+
+.region.dashboard .empty-plugget-space:hover {
+    border-color: rgba(0,0,0,.4);
+}
+
+.region.dashboard .plugget {
+    min-height: 240px;
+}
+
+.region.dashboard .plugget .content {
+    flex-grow: 999999;
+}
+
+.region.dashboard .plugget .content .header {
+    vertical-align: middle;
+}
+
+.region.dashboard .plugget .content:first-child,
+.region.dashboard .plugget .extra.content {
+    flex-grow: 1;
 }
 
 #footer {

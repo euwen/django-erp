@@ -5,6 +5,7 @@
     {% for message in messages %}
     <div class="ui floating {{ message.tags }} message">
         <i class="close icon"></i>
+        <div class="header">{% trans message.tags as title %}{{ title|capfirst }}</div>
         <p>{{ message }}</p>
     </div>
     {% endfor %}

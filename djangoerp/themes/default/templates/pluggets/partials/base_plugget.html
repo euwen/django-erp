@@ -5,9 +5,9 @@
     <div class="content">
         <div class="header">
             {% block plugget-icon %}{% endblock %}
-            {% block plugget-title %}<strong>{% if plugget.title %}{% trans plugget.title %}{% else %}{% trans plugget.template.title %}{% endif %}</strong>{% endblock %}
+            {% block plugget-title %}{% if plugget.title %}{% trans plugget.title %}{% else %}{% trans plugget.template.title %}{% endif %}{% endblock %}
             {% if plugget.region|user_has_perm:"pluggets.change_region" %}
-            <div class="ui right floated mini icon basic buttons">
+            <div class="ui right floated icon mini compact buttons">
                 {% if plugget|user_has_perm:"pluggets.change_plugget" %}
                 <a class="ui button" title="{% trans 'Edit' %}"  href="{{ plugget.get_edit_url }}">
                     <i class="pencil icon"></i>
@@ -15,7 +15,7 @@
                 {% endif %}
                 {% if plugget|user_has_perm:"pluggets.delete_plugget" %}
                 <a class="ui button" title="{% trans 'Delete' %}"  href="{{ plugget.get_delete_url }}">
-                    <i class="trash icon"></i>
+                    <i class="remove icon"></i>
                 </a>
                 {% endif %}
             </div>
