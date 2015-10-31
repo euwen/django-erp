@@ -47,6 +47,26 @@ def split(string, sep):
 
 
 @register.filter
+@stringfilter
+def startswith(string, pattern):
+    """Returns True if string starts with pattern.
+
+    Example usage: {{ request.path|startswith:"www.my_domain.com" }}
+    """
+    return string.startswith(pattern)
+
+
+@register.filter
+@stringfilter
+def endswith(string, pattern):
+    """Returns True if string ends with pattern.
+
+    Example usage: {{ request.path|endswith:"page=home" }}
+    """
+    return string.endswith(pattern)
+
+
+@register.filter
 def get(obj, attr_name):
     """Returns the attr value for the given object.
 

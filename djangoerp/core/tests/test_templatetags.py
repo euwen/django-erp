@@ -37,12 +37,30 @@ class JoinStringsTemplateTagTestCase(TestCase):
         """
         self.assertEqual(join("_", "a", "b", "", "d"), "a_b_d")
         
+
 class SplitFilterTestCase(TestCase):
     def test_split_on_string(self):
         """Tests the split filter on a string.
         """
         self.assertEqual(split("a/path/to/my/folder", '/'), ["a", "path", "to", "my", "folder"])
         
+
+class StartsWithFilterTestCase(TestCase):
+    def test_startswith_on_string(self):
+        """Tests the startswith filter on a string.
+        """
+        self.assertEqual(startswith("SelectCar", 'Select'), True)
+        self.assertEqual(startswith("InputSelect", 'Select'), False)
+        
+
+class EndsWithFilterTestCase(TestCase):
+    def test_endswith_on_string(self):
+        """Tests the endswith filter on a string.
+        """
+        self.assertEqual(endswith("SelectCar", 'Select'), False)
+        self.assertEqual(endswith("InputSelect", 'Select'), True)
+        
+
 class DiffFilterTestCase(TestCase):
     def test_diff_with_number(self):
         """Tests the diff filter using a number.
@@ -54,6 +72,7 @@ class DiffFilterTestCase(TestCase):
         """
         self.assertEqual(diff(5, "2"), 3)
         
+
 class GetFilterTestCase(TestCase):
     def test_get_from_dict(self):
         """Tests getting a value from a dict.
@@ -89,6 +108,7 @@ class GetFilterTestCase(TestCase):
         self.assertEqual(get(obj, "foo"), "bar")
         self.assertEqual(get(obj, "foo_func"), "bar_func")
     
+
 class ModelNameFilterTestCase(TestCase):
     def test_valid_model_name(self):
         """Tests returning of a valid model name using "model_name" filter.
@@ -164,6 +184,7 @@ class ModelNameFilterTestCase(TestCase):
         self.assertEqual(raw_model_name_plural(FakeObject), "") 
         self.assertEqual(raw_model_name_plural(FakeObject()), "")
         
+
 class UserHasPermTagTestCase(TestCase):
     def test_user_has_perm(self):
         """Tests that "user_has_perm" check perms on both model and obj levels.
@@ -200,6 +221,7 @@ class UserHasPermTagTestCase(TestCase):
         # Restores previous cached user.
         logged_cache.user = prev_user
         
+
 class BreadcrumbsTagsTestCase(TestCase):
     urls = 'djangoerp.core.tests.urls'
     
@@ -334,6 +356,7 @@ class BreadcrumbsTagsTestCase(TestCase):
             {"breadcrumbs": [("Home", "/"), ("Private zone", "/private/")]}
         )
         
+
 class AvatarTagTestCase(TestCase):
     def test_empty_avatar(self):
         """Tests "avatar" templatetag with empty params.
