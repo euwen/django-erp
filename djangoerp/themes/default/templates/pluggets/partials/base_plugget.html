@@ -9,12 +9,12 @@
             {% if plugget.region|user_has_perm:"pluggets.change_region" %}
             <div class="ui right floated icon mini compact buttons">
                 {% if plugget|user_has_perm:"pluggets.change_plugget" %}
-                <a class="ui button" title="{% trans 'Edit' %}"  href="{{ plugget.get_edit_url }}">
+                <a class="ui edit button" title="{% trans 'Edit' %}"  href="{{ plugget.get_edit_url }}">
                     <i class="pencil icon"></i>
                 </a>
                 {% endif %}
                 {% if plugget|user_has_perm:"pluggets.delete_plugget" %}
-                <a class="ui button" title="{% trans 'Delete' %}"  href="{{ plugget.get_delete_url }}">
+                <a class="ui delete button" title="{% trans 'Delete' %}"  href="{{ plugget.get_delete_url }}">
                     <i class="remove icon"></i>
                 </a>
                 {% endif %}

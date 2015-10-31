@@ -216,6 +216,7 @@ class PluggetWizard(SetCancelUrlMixin, SessionWizardView):
         
 class DeletePluggetView(SuccessMessageMixin, SetCancelUrlMixin, DeleteView):
     model = Plugget
+    template_name = "base_confirm_delete.html"
     success_message = _("The plugget was deleted successfully.")
     
     @method_decorator(permission_required("pluggets.change_region", _get_region))

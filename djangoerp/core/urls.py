@@ -27,6 +27,7 @@ urlpatterns = [
 
     # User authentication management.
     url(r'^users/login/$', 'django.contrib.auth.views.login', {'template_name': 'auth/login.html'}, name='user_login'),
+    url(r'^users/logout/confirm/$', TemplateView.as_view(template_name="auth/confirm_logout.html"), name='user_confirm_logout'),
     url(r'^users/logout/$', view='django.contrib.auth.views.logout_then_login', name='user_logout'),
     url(r'^users/(?P<pk>\d+)/$', view=DetailUserView.as_view(), name='user_detail'),
     url(r'^users/(?P<pk>\d+)/edit/$', view=UpdateUserView.as_view(), name='user_edit'),

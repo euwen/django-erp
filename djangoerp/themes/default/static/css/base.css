@@ -31,6 +31,10 @@ a:focus {
     text-align: center;
 }
 
+.ui.basic.modal > .header .sub.header {
+    color: rgba(255,255,255,0.85);
+}
+
 .ui.menu .dropdown.item > .menu {
     min-width: 200px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
@@ -69,7 +73,7 @@ a:focus {
 
 .ui.attached.compact {
     width: 100%;
-    max-width: 50em;
+    max-width: 50rem;
 }
 
 .ui.form .field input,

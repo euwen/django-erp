@@ -15,10 +15,10 @@
     <div class="column">
         <p class="empty-plugget-space">
             {% if region|user_has_perm:"pluggets.change_region" and perms.pluggets.add_plugget %}
-            <a class="ui circular icon button" title="{% trans 'Add plugget' %}" href="{% url 'plugget_add' region.slug %}">
+            <a class="ui add circular icon button" title="{% trans 'Add plugget' %}" href="{% url 'plugget_add' region.slug %}">
                 <i class="plus icon"></i>
             </a>
-            {% trans "Click to add a plugget" %}</span>
+            {% trans "Click to add a plugget" %}
             {% endif %}
         </p>
     </div>

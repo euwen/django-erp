@@ -96,22 +96,9 @@
             <a class="ui profile item" href="{{ user.get_absolute_url }}">
                 {% avatar user.email "32" "mm" "ui avatar image" %} {{ user }}
             </a>
-            <a class="ui logout icon item" href="{% url 'user_logout' %}">
+            <a class="ui logout icon item" href="{% url 'user_confirm_logout' %}">
                 <i class="large power off icon"></i>
             </a>
-            <div class="ui approve logout basic small modal">
-                <div class="ui icon header">
-                    <i class="power off icon"></i>
-                    {% trans "Confirm logout" %}
-                </div>
-                <div class="content">
-                    <p>{% trans "Are you sure you want to logout?" %}</p>
-                </div>
-                <div class="actions">
-                    <div class="ui red cancel basic button">{% trans "No" %}</div>
-                    <div class="ui green approve basic button">{% trans "Yes" %}</div>
-                </div>
-            </div>
         </div>
 
         <div id="main" class="ui raised segment">
@@ -180,16 +167,27 @@
 
     $('.logout.item').on('click', function(e) {
 
-        var action = $(this).attr('href');
+        e.preventDefault();
+
+        var self = $(this);
+        var action = self.attr('href');
+
+        $.ajaxRequest(action, "GET", {}, null, function(content) {
+
+            self.after(content).siblings('.modal').modal('show');
+        });
+    });
+
+    $('.delete.button').on('click', function(e) {
 
         e.preventDefault();
 
-        $('.ui.approve.logout.modal')
-            .modal({
-                onApprove : function() {
-                    window.location.href = action;
-                }
-            })
-            .modal('show');
+        var self = $(this);
+        var action = self.attr('href');
+
+        $.ajaxRequest(action, "GET", {}, null, function(content) {
+
+            self.after(content).siblings('.modal').modal('show');
+        });       
     });
 {% endblock %}

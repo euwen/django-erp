@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<div class="ui approve logout basic small modal">
+    <div class="ui icon header">
+        <i class="power off icon"></i>
+        {% trans "Confirm logout" %}
+    </div>
+    <div class="content">
+        <p>{% trans "Are you sure you want to logout?" %}</p>
+    </div>
+    <div class="actions">
+        <div class="ui red cancel basic button">{% trans "No" %}</div>
+        <a class="ui green approve basic button" href="{% url 'user_logout' %}">{% trans "Yes" %}</a>
+    </div>
+</div>
