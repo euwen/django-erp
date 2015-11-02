@@ -1,3 +1,9 @@
-<div id="{{ slug }}-menu" class="{% block menu-css %}ui {% if css_class %}{{ css_class }} {% endif %}menu{% endblock %}" {% block menu-extra-attrs %}role="menu"{% endblock %}>
-    {% include "menus/partials/menu_only_links.html" with menu=menu %}
+{% if links %}
+<div
+    id="{% block menu-id %}{{ slug }}-menu{% endblock %}"
+    class="{% block menu-css %}ui {% if menu_css_class %}{{ menu_css_class }}{% else %}menu{% endif %}{% endblock %}"
+    {% block menu-extra-attrs %}role="menu"{% endblock %}
+>
+    {% block menu-links %}{% include links_template|default:"menus/partials/menu_only_links.html" with menu=menu %}{% endblock %}
 </div>
+{% endif %}

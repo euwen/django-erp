@@ -1,0 +1,5 @@
+{% extends "menus/partials/menu.html" %}
+
+{% block menu-css %}ui buttons{% endblock %}
+
+{% block menu-links %}{% include "menus/partials/menu_only_links.html" with menu=menu link_template="menus/partials/link_button_only_icon.html" %}{% endblock %}

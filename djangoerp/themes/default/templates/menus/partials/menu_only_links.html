@@ -4,7 +4,7 @@
 {% for link in links %}
     {% if link.authorized and link.get_absolute_url %}
     {% block menu-link %}
-    {% include link.template_name|default:"menus/partials/link.html" with link=link css_class=None %}
+    {% include link_template|default:link.template_name|default:"menus/partials/link.html" with link=link %}
     {% endblock %}
     {% endif %}
 {% endfor %}

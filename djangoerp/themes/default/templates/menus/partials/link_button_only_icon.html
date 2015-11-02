@@ -1,0 +1,7 @@
+{% extends "menus/partials/link_button.html" %}
+
+{% load markup %}
+
+{% block link-css %}{{ block.super|split:" "|slice:":-1"|join:" " }} icon button{% endblock %}
+
+{% block link-title %}{% endblock %}
