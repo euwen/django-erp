@@ -1,0 +1,23 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load introspection %}
+{% load menus %}
+
+{% block meta-title %}
+    {{ object|striptags|capfirst }}
+{% endblock %}
+
+{% block page-title %}
+    <h1 class="ui header">{% block object-title %}{{ object|striptags|capfirst }}{% endblock %}</h1>
+{% endblock %}
+
+{% block page-actions %}
+    {% with menu_slug=object|raw_model_name|add:"_detail_actions" %}{% render_menu menu_slug "menus/partials/menu_actions.html" %}{% endwith %}
+{% endblock %}
+
+{% block main %}
+    {% with menu_slug=object|raw_model_name|add:"_detail_navigation" %}{% render_menu menu_slug "menus/partials/menu_tabs.html" %}{% endwith %}
+    {% block main-details %}
+    {% endblock %}
+{% endblock %}
