@@ -26,8 +26,7 @@ from django.template.loader import render_to_string
 from django.contrib.contenttypes.models import ContentType
 from djangoerp.core.utils.models import (
     get_model,
-    get_fields,
-    get_field_type,
+    get_fields as get_fields_util,
 )
 
 
@@ -41,6 +40,15 @@ def typeof(value):
     Example usage: {{ my_var|typeof }}
     """
     return (u"%s" % type(value)).replace("<class '", "").replace("<type '", "").replace("'>", "")
+
+
+@register.filter
+def get_fields(obj):
+    """Returns all fields of obj as a dictionary.
+
+    Example usage: {{ object|get_fields }}
+    """
+    return get_fields_util(obj)
 
 
 @register.filter
