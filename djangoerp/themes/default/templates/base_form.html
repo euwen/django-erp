@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load introspection %}
+{% load menus %}
 
 {% block meta-title %}
     {% if object and object.pk %}
@@ -36,6 +37,10 @@
         {% endblock %}
         </div>
     </h1>
+{% endblock %}
+
+{% block page-actions %}
+    {% with action_menu_slug=object|raw_model_name|add:"_detail_actions" %}{% render_menu action_menu_slug "menus/partials/menu_actions.html" %}{% endwith %}
 {% endblock %}
 
 {% block main %}
