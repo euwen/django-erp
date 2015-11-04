@@ -33,6 +33,9 @@ urlpatterns = [
     url(r'^users/(?P<pk>\d+)/edit/$', view=UpdateUserView.as_view(), name='user_edit'),
     url(r'^users/(?P<pk>\d+)/delete/$', view=DeleteUserView.as_view(), name='user_delete'),
     
+    # About.
+    url(r'^about/$', TemplateView.as_view(template_name="about.html"), name='about'),
+    
     # Homepage.
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='home'),
 ]

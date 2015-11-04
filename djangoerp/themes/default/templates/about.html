@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load staticfiles %}
+
+<div class="ui about small modal">
+    <div class="ui image header">
+        <img class="ui small image" src="{% static 'images/logo_splash.png' %}"/>
+    </div>
+    <div class="divider"></div>
+    <div class="content">
+        <p><strong>v{{ VERSION }}</strong></p>
+        <p>{{ COPYRIGHT }}</p>
+    </div>
+</div>

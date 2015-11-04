@@ -16,9 +16,15 @@ __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
 __copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
+
 from django.utils.functional import lazy
+from djangoerp import (
+    get_version,
+    get_copyright
+)
 
 from .models import *
+
 
 # ObjPermWrapper and ObjPermLookupDict proxy the permissions system into objects
 # the template system could understand.
@@ -44,6 +50,7 @@ class ObjPermLookupDict(object):
             return True
         return self.user.objectpermissions.filter(perm__content_type__app_label=self.module_name).exists()
 
+
 class ObjPermWrapper(object):
     def __init__(self, user):
         self.user = user
@@ -56,6 +63,7 @@ class ObjPermWrapper(object):
     def __iter__(self):
         # I am large, I contain multitudes.
         raise TypeError("ObjPermWrapper is not iterable.")
+
 
 def auth(request):
     """Adds a new 'obj_perms' context variable.
@@ -83,4 +91,18 @@ def auth(request):
 
     return {
         'obj_perms': lazy(lambda: ObjPermWrapper(_get_user()), ObjPermWrapper)(),
+    }
+
+
+def system_info(request):
+    """Adds some context variables to print useful system information.
+
+    The added context variables are:
+
+    * VERSION (django ERP version string)
+    * COPYRIGHT (django ERP copyright notice)
+    """
+    return {
+        'VERSION': get_version(),
+        'COPYRIGHT': get_copyright()
     }

@@ -15,3 +15,14 @@ THE SOFTWARE.
 __author__ = 'Emanuele Bertoldi <emanuele.bertoldi@gmail.com>'
 __copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
+
+
+def get_version():
+    """Returns django ERP version string.
+    """
+    return __version__
+
+def get_copyright():
+    """Returns django ERP copyright notice.
+    """
+    return __copyright__

@@ -134,7 +134,6 @@
 
 {% block onbodyload-djangoerp %}
     $('#header .brand.item > a')
-        .transition('tada')
         .hover(
 
             // Hover in.
@@ -171,6 +170,19 @@
 
     $('#messages .message')
         .transition('fly left in');
+
+    $('.about.item').on('click', function(e) {
+
+        e.preventDefault();
+
+        var self = $(this);
+        var action = self.attr('href');
+
+        $.ajaxRequest(action, "GET", {}, null, function(content) {
+
+            self.after(content).siblings('.modal').modal('show');
+        });
+    });
 
     $('.logout.item').on('click', function(e) {
 

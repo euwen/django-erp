@@ -41,6 +41,7 @@ LOGIN_REQUIRED_URLS_EXCEPTIONS = (
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     'djangoerp.core.context_processors.auth',
+    'djangoerp.core.context_processors.system_info',
 )
 
 MIDDLEWARE_CLASSES += (
