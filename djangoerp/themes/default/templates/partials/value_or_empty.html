@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{% trans "Not specified" as not_specified %}
+
+{% if value.get_absolute_url %}
+    <a href="{{ value.get_absolute_url }}" title="{{ value }}">{{ value }}</a>
+{% elif value|lower == 'false' %}
+    <i class="ui red remove icon"></i>
+    {% trans "No" %}
+{% elif value|lower == 'true' %}
+    <i class="ui green check icon"></i>
+    {% trans "Yes" %}
+{% elif value %}
+    {{ value }}
+{% else %}
+    <span class="disabled">{{ empty_label|default:not_specified }}</span>
+{% endif %}

@@ -94,7 +94,7 @@
                 {% endwith %}
             </div>
             <a class="ui profile item" href="{{ user.get_absolute_url }}">
-                {% avatar user.email "32" "mm" "ui avatar image" %} {{ user }}
+                {% avatar user.email "32" css_class="ui avatar image" %} {{ user }}
             </a>
             <a class="ui logout icon item" href="{% url 'user_confirm_logout' %}">
                 <i class="large power off icon"></i>
@@ -111,15 +111,22 @@
 {% endblock %}
 
 {% block onbodyload-semanticui %}
-    $('.ui.dropdown').dropdown({
-        transition: 'fade',
-    });
+    $('.ui.dropdown')
+        .dropdown({
+            transition: 'fade',
+        });
 
-    $('.ui.message .close').on('click', function() {
-        $(this)
-            .closest('.message')
-            .transition('fade');
-    });
+    $('.details.accordion')
+        .accordion({
+            exclusive: false
+        });
+
+    $('.ui.message .close')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
 
     $('#sidebar .ui.sticky')
         .sticky({ context: '.pusher' });

@@ -1,0 +1,8 @@
+{% load markup %}
+
+{% join field_name "get_" "_display" as display_name %}
+{% if object|get:display_name %}
+{% include "partials/value_or_empty.html" with value=object|get:display_name %}
+{% else %}
+{% include "partials/value_or_empty.html" with value=object|get:field.attname %}
+{% endif %}

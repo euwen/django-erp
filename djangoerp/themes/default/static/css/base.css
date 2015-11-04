@@ -71,6 +71,46 @@ a:focus {
     background-color: #3d3e3f;
 }
 
+.ui.details.accordion {
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15),0 0 0 1px rgba(34,36,38,.15);
+}
+
+.ui.details.accordion > .title {
+    padding: 1em;
+    border-bottom: 1px solid rgba(34,36,38,.15);
+    -webkit-transition: background 200ms;
+    transition: background 200ms;
+}
+
+.ui.details.accordion > .title.active {
+    margin-bottom: -.5em;
+    font-weight: bold;
+    background-color: rgba(34,36,38,.02);
+}
+
+.ui.details.accordion > .content:not(:last-child) {
+    margin-bottom: -1em;
+}
+
+.ui.details.accordion > .content .item {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.ui.list > .item > .inline.content > * {
+    display: inline-block;
+}
+
+.ui.list > .item > .inline.content > .header,
+.ui.list > .item > .inline.content > .description {
+    min-width: 100%;
+}
+
+.ui.list > .item > .inline.content > .description {
+    margin-top: .5em;
+}
+
 .ui.attached.compact {
     width: 100%;
     max-width: 50rem;
@@ -80,10 +120,6 @@ a:focus {
 .ui.form .field textarea,
 .ui.form .field select,
 .ui.form .field .dropdown.selection {    
-}
-
-.region.dashboard {
-    margin-top: 0 !important;
 }
 
 .region.dashboard .empty-plugget-space {
@@ -119,4 +155,18 @@ a:focus {
 
 #footer {
     padding: 3rem 0;
+}
+
+/* Small devices (tablets, 768px and up) **************************************/
+
+@media (min-width: 768px) {
+
+    .ui.list > .item > .inline.content > .header,
+    .ui.list > .item > .inline.content > .description {
+        min-width: 12em;
+    }
+
+    .ui.list > .item > .inline.content > .description {
+        margin-top: 0;
+    }
 }

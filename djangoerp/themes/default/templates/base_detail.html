@@ -9,15 +9,33 @@
 {% endblock %}
 
 {% block page-title %}
-    <h1 class="ui header">{% block object-title %}{{ object|striptags|capfirst }}{% endblock %}</h1>
+    <h1 class="ui header">
+        {% block page-main-title %}
+            {{ object|striptags|capfirst }}
+        {% endblock %}
+        <div class="sub header">
+        {% block page-sub-title %}
+            {% if object and object.pk %}
+            {% with model=object|model_name %}
+            {% blocktrans %}View {{ model }}{% endblocktrans %}
+            {% endwith %}
+            {% endif %}
+        {% endblock %}
+        </div>
+    </h1>
 {% endblock %}
 
 {% block page-actions %}
-    {% with menu_slug=object|raw_model_name|add:"_detail_actions" %}{% render_menu menu_slug "menus/partials/menu_actions.html" %}{% endwith %}
+    {% with action_menu_slug=object|raw_model_name|add:"_detail_actions" %}{% render_menu action_menu_slug "menus/partials/menu_actions.html" %}{% endwith %}
 {% endblock %}
 
 {% block main %}
-    {% with menu_slug=object|raw_model_name|add:"_detail_navigation" %}{% render_menu menu_slug "menus/partials/menu_tabs.html" %}{% endwith %}
-    {% block main-details %}
-    {% endblock %}
+    {% with nav_menu_slug=object|raw_model_name|add:"_detail_navigation" %}
+        {% render_menu nav_menu_slug "menus/partials/menu_tabs.html" %}
+        {% get_menu_links nav_menu_slug as nav_menu_links %}
+        <div class="ui {% block main-details-segment-css %}{% if nav_menu_links %}bottom attached {% endif %}{% endblock %}segment">
+            {% block main-details %}
+            {% endblock %}
+        </div>
+    {% endwith %}
 {% endblock %}

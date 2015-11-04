@@ -2,12 +2,13 @@
 
 {% load i18n %}
 {% load markup %}
+{% load introspection %}
 {% load breadcrumbs %}
 {% load avatar %}
 
 {% block meta-title %}
     {% if object.pk == user.pk %}
-    {% trans "My Profile" %} | 
+    {% trans "My profile" %} | 
     {% else %}
     {{ block.super }}
     {% endif %}
@@ -15,23 +16,50 @@
 
 {% block breadcrumbs %}
     {% if object == user %}
-    {% add_crumb "My Profile" %}
+    {% add_crumb "My profile" %}
     {% else %}
     {% add_crumb object %}
     {% endif %}
 {% endblock %}
 
-{% block object-title %}
+{% block page-main-title %}
     {% if object.pk == user.pk %}
-    {% trans "My Profile" %}
+    {% trans "My profile" %}
     {% else %}
     {{ block.super }}
     {% endif %}
 {% endblock %}
 
+{% block main %}
+    <div class="ui stackable grid">
+        <div class="five wide mobile five wide tablet four wide computer column">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="four wide mobile sixteen wide tablet sixteen wide computer column">
+                        {% avatar object.email size="250" css_class="ui rounded fluid image" %}
+                    </div>
+                    <div class="twelve wide mobile sixteen wide tablet sixteen wide computer column">
+                        <h2 class="ui header">
+                            {{ object.username }}
+                            <div class="sub header">
+                                {% blocktrans with date=object.date_joined.date %}Joined on {{ date }}{% endblocktrans %}
+                            </div>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="eleven wide mobile eleven wide tablet twelve wide computer column">
+            {{ block.super }}
+        </div>
+    </div>    
+{% endblock %}
+
 {% block main-details %}
-    {% avatar object|get:"email" 140 %}
-    {% with field_list="[['username', 'email'], ['groups', 'is_active'], ['is_staff', 'is_superuser'], ['language', 'timezone'], ['date_joined', 'last_login']]" %}
-    {{ block.super }}
-    {% endwith %}
+    <div class="ui details fluid accordion">
+        {% with object|get_fields as object_fields %}
+        {% include "partials/field_detail_block.html" with legend="Account Info" icon="user" field_list="last_login,is_superuser,is_staff,is_active"|split:',' %}
+        {% include "partials/field_detail_block.html" with legend="Contact Info" icon="mail" field_list="email,language,timezone"|split:',' %}
+        {% endwith %}
+    </div>
 {% endblock %}
