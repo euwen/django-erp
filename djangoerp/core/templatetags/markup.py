@@ -82,8 +82,13 @@ def get(obj, attr_name):
 
     elif hasattr(obj, attr_name):
         value = getattr(obj, attr_name)
+
+        if hasattr(value, "get_queryset"):
+            value = getattr(value, "get_queryset")
+
         if callable(value):
             return value()
+
         return value
 
     return ""
