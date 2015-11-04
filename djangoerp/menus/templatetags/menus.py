@@ -57,6 +57,24 @@ def _calculate_link_params(link, context):
         if link.only_authenticated and not user.is_authenticated():
             link.authorized = False
     return link
+
+
+def _get_menu_links(slug, context):
+    """Helper function to get all links of a manu.
+
+    It takes a menu slug and a context and return the links ready to be rendered.
+    """
+    links = []
+    try:
+        if isinstance(slug, template.Variable):
+            slug = slug.resolve(context)
+        menu = Menu.objects.get(slug=slug)
+        links = menu.links.all()
+        for link in links:
+            _calculate_link_params(link, context)
+    except Menu.DoesNotExist:
+        pass
+    return links    
     
 
 def _render_menu(slug, context, html_template=None, css_class=None):
@@ -66,7 +84,6 @@ def _render_menu(slug, context, html_template=None, css_class=None):
     renders the given menu using the given attributes.
     """
     try:
-        links = None
         if isinstance(slug, template.Variable):
             slug = slug.resolve(context)
         if isinstance(html_template, template.Variable):
@@ -74,15 +91,22 @@ def _render_menu(slug, context, html_template=None, css_class=None):
         if isinstance(css_class, template.Variable):
            css_class = css_class.resolve(context)
         menu = Menu.objects.get(slug=slug)
-        links = menu.links.all()
-        for link in links:
-            _calculate_link_params(link, context)
+        links = _get_menu_links(slug, context)
         html_template = html_template or menu.template_name or settings.MENU_DEFAULT_TEMPLATE
         html_template = ("%s" % html_template).replace('"', '').replace("'", "")
         return render_to_string(html_template, {'slug': slug, 'links': links, 'css_class': css_class}, context)
     except Menu.DoesNotExist:
         pass
     return ""
+
+
+@register.assignment_tag(takes_context=True)
+def get_menu_links(context, slug):
+    """Retrieves links of a menu.
+
+    Example tag usage: {% get_menu_links menu_slug as menu_links %}
+    """
+    return _get_menu_links(slug, context)
 
 
 @register.simple_tag(takes_context=True)
