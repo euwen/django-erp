@@ -22,6 +22,7 @@ def install(apps, schema_editor):
     add_bookmark, is_new = Permission.objects.get_or_create_by_natural_key("add_link", "menus", "Link")
     edit_user, is_new = Permission.objects.get_or_create_by_natural_key("change_user", "core", "User")
     delete_user, is_new = Permission.objects.get_or_create_by_natural_key("delete_user", "core", "User")
+    view_user, is_new = Permission.objects.get_or_create_by_natural_key("view_user", "core", "User")
     
     # Menus.
     main_menu, is_new = Menu.objects.get_or_create(
@@ -45,21 +46,12 @@ def install(apps, schema_editor):
     
     # Links.
     my_dashboard_link, is_new = Link.objects.get_or_create(
-        menu_id=main_menu.pk,
         title=_("My Dashboard"),
         slug="my-dashboard",
         description=_("Go back to your dashboard"),
+        url="/",
         icon="dashboard",
-        url="/"
-    )
-    
-    login_link, is_new = Link.objects.get_or_create(
-        title=_("Login"),
-        slug="login",
-        description=_("Login"),
-        url=reverse("user_login"),
-        only_authenticated=False,
-        menu_id=user_area_not_logged_menu.pk
+        menu_id=main_menu.pk,
     )
     
     administration_link, is_new = Link.objects.get_or_create(
@@ -68,7 +60,18 @@ def install(apps, schema_editor):
         description=_("Administration panel"),
         url="/admin/",
         only_staff=True,
-        menu_id=user_area_logged_menu.pk
+        icon="wrench",
+        menu_id=main_menu.pk
+    )
+    
+    login_link, is_new = Link.objects.get_or_create(
+        title=_("Login"),
+        slug="login",
+        description=_("Login"),
+        url=reverse("user_login"),
+        only_authenticated=False,
+        icon="sign in",
+        menu_id=user_area_not_logged_menu.pk
     )
     
     logout_link, is_new = Link.objects.get_or_create(
@@ -76,8 +79,20 @@ def install(apps, schema_editor):
         slug="logout",
         description=_("Logout"),
         url=reverse("user_logout"),
+        icon="power off",
         menu_id=user_area_logged_menu.pk
     )
+    
+    user_view_link, is_new = Link.objects.get_or_create(
+        title=_("View"),
+        slug="user-detail",
+        description=_("View"),
+        url="user_detail",
+        context='{"pk": "object.pk"}',
+        icon="eye",
+        menu_id=user_detail_actions.pk
+    )
+    user_view_link.only_with_perms=[view_user]
     
     user_edit_link, is_new = Link.objects.get_or_create(
         title=_("Edit"),
@@ -85,6 +100,7 @@ def install(apps, schema_editor):
         description=_("Edit"),
         url="user_edit",
         context='{"pk": "object.pk"}',
+        icon="pencil",
         menu_id=user_detail_actions.pk
     )
     user_edit_link.only_with_perms=[edit_user]
@@ -95,6 +111,7 @@ def install(apps, schema_editor):
         description=_("Delete"),
         url="user_delete",
         context='{"pk": "object.pk"}',
+        icon="trash",
         menu_id=user_detail_actions.pk
     )
     user_delete_link.only_with_perms=[delete_user]
