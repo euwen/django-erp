@@ -33,6 +33,10 @@
     flex-grow: 2;
 }
 
+#header .date.item .icon {
+    display: none;
+}
+
 #header .date.item .label {
     margin: 0;
     padding: 0;
@@ -215,6 +219,10 @@
 
     #header.collapsed {
         width: 193px;
+    }
+
+    #header.collapsed .date.item .icon {
+        display: flex;
     }
 
     #header.collapsed .date.item .label {
