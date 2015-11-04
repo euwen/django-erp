@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% if object == user %}
+    {% if object == request.user %}
     {% add_crumb "My profile" %}
     {% else %}
     {% add_crumb object %}
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block page-main-title %}
-    {% if object.pk == user.pk %}
+    {% if object.pk == request.user.pk %}
     {% trans "My profile" %}
     {% else %}
     {{ block.super }}

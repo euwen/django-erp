@@ -38,7 +38,11 @@ def _calculate_link_params(link, context):
     It takes a link instance, a context and calculates the final values
     of its params (i.e. URL, title, description, etc.)
     """
-    user = context.get('user', None)
+    user = None
+    try:
+        user = context['request'].user
+    except KeyError, AttributeError:
+        pass
     link.extra_context = context
     link.title = link.title % context
     if link.description:
