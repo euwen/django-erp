@@ -46,7 +46,7 @@ def install(apps, schema_editor):
     
     # Links.
     my_dashboard_link, is_new = Link.objects.get_or_create(
-        title=_("My Dashboard"),
+        title=_("My dashboard"),
         slug="my-dashboard",
         description=_("Go back to your dashboard"),
         url="/",
