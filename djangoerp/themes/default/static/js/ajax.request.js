@@ -51,5 +51,18 @@ $.extend({
                 }
             }
         });
+    },
+
+    ajaxRequestLinkInModal(evt, callback) {
+
+        evt.preventDefault();
+
+        var self = $(this);
+        var action = self.attr('href');
+
+        $.ajaxRequest(action, "GET", {}, null, callback || function(content) {
+
+            self.after(content).siblings('.modal').modal('show');
+        });
     }
 });

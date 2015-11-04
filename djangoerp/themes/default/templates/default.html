@@ -171,42 +171,9 @@
     $('#messages .message')
         .transition('fly left in');
 
-    $('.about.item').on('click', function(e) {
+    $('.about.item').on('click', $.ajaxRequestLinkInModal);
 
-        e.preventDefault();
+    $('.logout.item').on('click', $.ajaxRequestLinkInModal);
 
-        var self = $(this);
-        var action = self.attr('href');
-
-        $.ajaxRequest(action, "GET", {}, null, function(content) {
-
-            self.after(content).siblings('.modal').modal('show');
-        });
-    });
-
-    $('.logout.item').on('click', function(e) {
-
-        e.preventDefault();
-
-        var self = $(this);
-        var action = self.attr('href');
-
-        $.ajaxRequest(action, "GET", {}, null, function(content) {
-
-            self.after(content).siblings('.modal').modal('show');
-        });
-    });
-
-    $('.delete.button').on('click', function(e) {
-
-        e.preventDefault();
-
-        var self = $(this);
-        var action = self.attr('href');
-
-        $.ajaxRequest(action, "GET", {}, null, function(content) {
-
-            self.after(content).siblings('.modal').modal('show');
-        });       
-    });
+    $('.delete.button').on('click', $.ajaxRequestLinkInModal);
 {% endblock %}
