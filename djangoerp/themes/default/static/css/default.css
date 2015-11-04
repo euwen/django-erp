@@ -101,6 +101,10 @@
     background-color: #fff;
 }
 
+#main .ui.page-header+.ui.divider {
+    margin-bottom: 2rem;
+}
+
 #main .ui.page-header .row .column {
     padding-bottom: 0 !important;
 }
