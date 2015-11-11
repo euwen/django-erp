@@ -12,6 +12,8 @@
 {% endblock %}
 
 {% block wrapper %}
+    {% block breadcrumbs %}{% endblock %}
+
     <div id="header" class="ui top fixed inverted menu">
         <div class="brand header item">
             {% include "partials/brand.html" %}
@@ -56,50 +58,7 @@
     </div>
 
     <div class="pusher">
-        <div id="userarea" class="ui inverted menu">
-            <a class="ui home icon item" href="{% url 'home' %}" title="{% trans 'Home' %}">
-                <i class="home icon"></i>
-            </a>
-            <div class="ui breadcrumb item">
-                {% block breadcrumbs %}{% endblock %}{% render_breadcrumbs %}
-            </div>
-            <div class="ui bookmarks top left pointing dropdown icon item">
-                <i class="empty star icon"></i>
-                {% render_user_bookmarks %}
-            </div>
-            <div class="ui notifications top center pointing dropdown icon item">
-                <i class="inbox icon"></i>
-                {% with request.user.notification_set.unread.count as notification_count %}
-                {% if notification_count %}<div class="floating ui red label">{{ notification_count }}</div>{% endif %}
-                <div class="menu">
-                    <div class="header">
-                        {% trans "Notifications" %}
-                    </div>
-                    <div class="divider"></div>
-                    {% if notification_count %}
-                    {% for notification in request.user.notification_set.unread.all %}
-                    <div class="item">
-                        <i class="mail icon"></i>
-                        <a class="ui" href="{{ notification.get_absolute_url }}">{{ notification }}</a>
-                        <div class="description">{{ notification.created|timesince }}</div>
-                    </div>
-                    {% endfor %}
-                    <div class="divider"></div>
-                    {% endif %}
-                    <a class="ui item" title="{% trans 'View all' %}" href="{% url 'notification_list' 'users' user.pk %}">
-                        <i class="list icon"></i>
-                        {% trans "View all" %}
-                    </a>
-                </div>
-                {% endwith %}
-            </div>
-            <a class="ui profile item" href="{{ request.user.get_absolute_url }}">
-                {% avatar request.user.email "32" css_class="ui avatar image" %} {{ request.user }}
-            </a>
-            <a class="ui logout icon item" href="{% url 'user_confirm_logout' %}">
-                <i class="large power off icon"></i>
-            </a>
-        </div>
+        {% render_menu "user_area_logged" "menus/partials/menu_userarea.html" %}
 
         <div id="main" class="ui raised segment">
             {% block layout %}

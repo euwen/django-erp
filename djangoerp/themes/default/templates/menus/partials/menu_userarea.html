@@ -1,0 +1,56 @@
+{% extends "menus/partials/menu.html" %}
+
+{% load i18n %}
+{% load breadcrumbs %}
+{% load menus %}
+{% load avatar %}
+
+{% block menu-id %}userarea{% endblock %}
+
+{% block menu-css %}ui inverted menu{% endblock %}
+
+{% block menu-links %}
+    <a class="ui home icon item" href="{% url 'home' %}" title="{% trans 'Home' %}">
+        <i class="home icon"></i>
+    </a>
+    <div class="ui breadcrumb item">
+        {% render_breadcrumbs %}
+    </div>
+    <div class="ui bookmarks top left pointing dropdown icon item">
+        <i class="empty star icon"></i>
+        {% render_user_bookmarks %}
+    </div>
+    {% include "menus/partials/menu_only_links.html" with menu=menu link_template="menus/partials/link_only_icon.html" %}
+    <div class="ui notifications top center pointing dropdown icon item">
+        <i class="inbox icon"></i>
+        {% with request.user.notification_set.unread.count as notification_count %}
+        {% if notification_count %}<div class="floating ui red label">{{ notification_count }}</div>{% endif %}
+        <div class="menu">
+            <div class="header">
+                {% trans "Notifications" %}
+            </div>
+            <div class="divider"></div>
+            {% if notification_count %}
+            {% for notification in request.user.notification_set.unread.all %}
+            <div class="item">
+                <i class="mail icon"></i>
+                <a class="ui" href="{{ notification.get_absolute_url }}">{{ notification }}</a>
+                <div class="description">{{ notification.created|timesince }}</div>
+            </div>
+            {% endfor %}
+            <div class="divider"></div>
+            {% endif %}
+            <a class="ui item" title="{% trans 'View all' %}" href="{% url 'notification_list' 'users' user.pk %}">
+                <i class="list icon"></i>
+                {% trans "View all" %}
+            </a>
+        </div>
+        {% endwith %}
+    </div>
+    <a class="ui profile item" href="{{ request.user.get_absolute_url }}">
+        {% avatar request.user.email "32" css_class="ui avatar image" %} {{ request.user }}
+    </a>
+    <a class="ui logout icon item" href="{% url 'user_confirm_logout' %}">
+        <i class="large power off icon"></i>
+    </a>
+{% endblock %}

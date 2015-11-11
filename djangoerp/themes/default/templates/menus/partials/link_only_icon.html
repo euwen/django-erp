@@ -1,0 +1,7 @@
+{% extends "menus/partials/link.html" %}
+
+{% load markup %}
+
+{% block link-css %}{{ block.super|split:" "|slice:":-1"|join:" " }} icon item{% endblock %}
+
+{% block link-title %}{% if not link.icon %}{{ block.super }}{% endif %}{% endblock %}
