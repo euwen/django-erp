@@ -102,15 +102,17 @@
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1rem;
-    background-color: #fff;
-}
-
-#main .ui.page-header+.ui.divider {
     margin-bottom: 2rem;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.15);
 }
 
 #main .ui.page-header .row .column {
     padding-bottom: 0 !important;
+}
+
+#main .ui.page-header+.ui.grid {
+    margin-top: -1rem;
 }
 
 #userarea {
