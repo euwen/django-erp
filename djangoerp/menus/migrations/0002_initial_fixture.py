@@ -74,15 +74,6 @@ def install(apps, schema_editor):
         menu_id=user_area_not_logged_menu.pk
     )
     
-    logout_link, is_new = Link.objects.get_or_create(
-        title=_("Logout"),
-        slug="logout",
-        description=_("Logout"),
-        url=reverse("user_logout"),
-        icon="power off",
-        menu_id=user_area_logged_menu.pk
-    )
-    
     user_view_link, is_new = Link.objects.get_or_create(
         title=_("View"),
         slug="user-detail",
