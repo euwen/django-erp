@@ -57,7 +57,7 @@
     top: 50px;
     bottom: 50px;
     left: -100%;
-    z-index: 10;
+    z-index: 102;
     margin: 0;
     padding: 0;
     border-bottom: 5px solid #db2828;
@@ -92,27 +92,28 @@
     border-top-right-radius: 0;
 }
 
-#main .ui.page-header,
-#main .ui.page-header+.ui.divider {
-    margin-left: -1em !important;
-    margin-right: -1em !important;
-}
-
 #main .ui.page-header {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    margin: 0;
     background-color: #fff;
     border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+#main .ui.page-header .ui.header,
+#main .ui.page-header .sub.header {
+    display: inline-block;
 }
 
 #main .ui.page-header .row .column {
     padding-bottom: 0 !important;
 }
 
-#main .ui.page-header+.ui.grid {
-    margin-top: -1rem;
+#main .ui.page-header+* {
+    margin-top: 65px;
 }
 
 #userarea {
@@ -170,15 +171,6 @@
     }
 }
 
-/* Very small devices (phones, unitl 767px) ***********************************/
-
-@media (max-width: 767px) {
-
-    #main .ui.page-header .column {
-        text-align: center;
-    }
-}
-
 /* Small devices (tablets, 768px and up) **************************************/
 
 @media (min-width: 768px) {
@@ -193,14 +185,20 @@
         display: inline-block;
     }
 
-    #main .ui.page-header,
-    #main .ui.page-header+.ui.divider {
-        margin-left: -2em !important;
-        margin-right: -2em !important;
+    #main {
+        padding: 2em;
+    }
+
+    #main .ui.page-header {
+        padding-top: 1em;
     }
 
     #main .ui.page-header .row {
-        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    #main .ui.page-header+* {
+        margin-top: calc(65px - 1rem);
     }
 }
 
@@ -241,7 +239,8 @@
     }
 
     #sidebar+.pusher,
-    #sidebar+.pusher #userarea {
+    #sidebar+.pusher #userarea,
+    #sidebar+.pusher .ui.page-header {
         margin-left: 280px;
         -webkit-transition: margin 200ms;
         transition: margin 200ms;
@@ -251,7 +250,8 @@
         left: -280px;
     }
 
-    #header.collapsed+#sidebar+.pusher {
+    #header.collapsed+#sidebar+.pusher,
+    #header.collapsed+#sidebar+.pusher .ui.page-header {
         margin-left: 0;
     }
 
@@ -308,19 +308,6 @@
 
     #userarea .logout.item:hover {
         color: #fff;
-    }
-
-    #main {
-        padding: 2em;
-    }
-
-    #main .ui.page-header {
-        margin-top: -2em;
-        padding-top: 1em;
-    }
-
-    #main .ui.page-header .row {
-        padding-top: 0;
     }
 }
 

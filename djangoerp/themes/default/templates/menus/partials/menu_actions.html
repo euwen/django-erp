@@ -1,5 +1,13 @@
 {% extends "menus/partials/menu.html" %}
 
-{% block menu-css %}ui buttons{% endblock %}
+{% block menu-css %}ui collapsable buttons{% endblock %}
 
-{% block menu-links %}{% include "menus/partials/menu_only_links.html" with menu=menu link_template="menus/partials/link_button_only_icon.html" %}{% endblock %}
+{% block menu-links %}
+    <div class="ui top right pointing dropdown icon button">
+        <i class="bars icon"></i>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            {% include "menus/partials/menu_only_links.html" with menu=menu link_template="menus/partials/link_button_only_icon.html" %}
+        </div>
+    </div>
+{% endblock %}

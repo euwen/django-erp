@@ -16,9 +16,8 @@
 
 {% block page-actions %}
     {% first_region_for user as user_dashboard %}
-    <a class="ui add button" href="{% url 'plugget_add' user_dashboard.slug %}">
+    <a class="ui add icon button" href="{% url 'plugget_add' user_dashboard.slug %}">
         <i class="plus icon"></i>
-        {% trans "Add" %}
     </a>
 {% endblock %}
 
