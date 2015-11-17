@@ -18,6 +18,10 @@ a:focus {
     outline: none;
 }
 
+.ui.inverted {
+    background-color: #424a5d !important;
+}
+
 .ui.dropdown .active.button.item {
     background-color: #c0c1c2;
 }
