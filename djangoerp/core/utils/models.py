@@ -17,6 +17,7 @@ __copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
 
+from collections import OrderedDict
 from django.utils.formats import localize
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -65,10 +66,10 @@ def get_fields(form_or_model):
     
     {field_name: field_instance, ...}
     """
-    field_list = {}
+    field_list = OrderedDict
     
     if isinstance(form_or_model, models.Model):
-        field_list = dict([(f.name, f) for f in (form_or_model._meta.fields + form_or_model._meta.many_to_many)])
+        field_list = OrderedDict([(f.name, f) for f in (form_or_model._meta.fields + form_or_model._meta.many_to_many)])
     elif isinstance(form_or_model, forms.BaseForm):
         field_list = form_or_model.fields
         
