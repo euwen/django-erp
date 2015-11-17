@@ -4,62 +4,16 @@
 
 {% get_current_language as lang_code %}
 
-{% if not field|is_current_translation_field:lang_code %}
-    {% block form-errors %}
-        {% if form.non_field_errors %}
-        <div class="ui error message">
-            <div class="header">{% trans "There are some errors" %}</div>
-            {% for error in form.non_field_errors %}
-            <p>{{ error }}</p>
-            {% endfor %}
-        </div>
+{% block form-hidden-fields %}
+    {% for field in form.hidden_fields %}
+        {{ field }}
+    {% endfor %}
+{% endblock %}
+
+{% block form-visible-fields %}
+    {% for field in form.visible_fields %}
+        {% if not field|is_current_translation_field:lang_code %}
+        {% include field.template_name|default:"partials/form_field.html" with field=field %}
         {% endif %}
-    {% endblock %}
-
-    {% block form-hidden-fields %}
-        {% for field in form.hidden_fields %}
-            {{ field }}
-        {% endfor %}
-    {% endblock %}
-
-    {% block form-visible-fields %}
-        {% for field in form.visible_fields %}
-            {% block form-visible-field %}
-            <div
-                class="{% if field.field.required %}required {% endif %}{% if field.errors %}error {% endif %}field"
-                {% if field.help_text %}
-                data-content="{{ field.help_text|safe }}" data-position="bottom center"
-                {% endif %}
-            >
-
-                {% block form-visible-field-widget %}
-                    {% if field|form_field_widget_type == "CheckboxInput" %}         
-                    <div class="ui checkbox">
-                        {{ field }}
-                        {{ field.label_tag }}
-                    </div>
-                    {% else %}
-                        {{ field.label_tag }}
-                        {% if field|form_field_widget_type|startswith:"Select" %}
-                        {{ field|add_class:"ui dropdown" }}
-                        {% else %}
-                        {{ field }}
-                        {% endif %}
-                    {% endif %}
-                {% endblock %}
-
-                {% block form-visible-field-errors %}
-                    {% if field.errors %}
-                    <div class="ui pointing red basic label">
-                    {% for error in field.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                    </div>
-                    {% endif %}
-                {% endblock %}
-
-            </div>
-            {% endblock %}
-        {% endfor %}
-    {% endblock %}
-{% endif %}
+    {% endfor %}
+{% endblock %}

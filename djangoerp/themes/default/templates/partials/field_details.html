@@ -1,0 +1,6 @@
+<div class="ui {{ field.attname }} field">
+    <div class="label">{{ field.verbose_name|capfirst }}</div>
+    <div class="value">
+        {% include "partials/field_or_empty.html" with object=object field_name=field.attname %}
+    </div>
+</div>

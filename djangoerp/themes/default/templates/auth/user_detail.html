@@ -30,36 +30,24 @@
     {% endif %}
 {% endblock %}
 
-{% block main %}
-    <div class="ui stackable grid">
-        <div class="five wide mobile five wide tablet four wide computer column">
-            <div class="ui segment">
-                <div class="ui grid">
-                    <div class="four wide mobile sixteen wide tablet sixteen wide computer column">
-                        {% avatar object.email size="250" css_class="ui rounded fluid image" %}
-                    </div>
-                    <div class="twelve wide mobile sixteen wide tablet sixteen wide computer column">
-                        <h2 class="ui header">
-                            {{ object.username }}
-                            <div class="sub header">
-                                {% blocktrans with date=object.date_joined.date %}Joined on {{ date }}{% endblocktrans %}
-                            </div>
-                        </h2>
-                    </div>
+{% block main-details %}
+    {% with object|get_fields as object_fields %}
+    <div class="ui grid">
+        <div class="sixteen wide mobile six wide tablet four wide computer column">
+            {% avatar object.email size="200" css_class="ui centered limited fluid rounded image" %}
+            <h2 class="ui center aligned header">
+                {{ object.username }}
+            </h2>
+        </div>
+        <div class="sixteen wide mobile ten wide tablet twelve wide computer column">
+            <div class="ui stackable grid">
+                {% for fieldname in "date_joined,last_login,is_superuser,is_staff,is_active,email,language,timezone"|split:',' %}
+                <div class="eight wide column">
+                    {% include "partials/field_details.html" with field=object_fields|get:fieldname %}
                 </div>
+                {% endfor %}
             </div>
         </div>
-        <div class="eleven wide mobile eleven wide tablet twelve wide computer column">
-            {{ block.super }}
-        </div>
-    </div>    
-{% endblock %}
-
-{% block main-details %}
-    <div class="ui details fluid accordion">
-        {% with object|get_fields as object_fields %}
-        {% include "partials/field_detail_block.html" with legend="Account Info" icon="user" field_list="last_login,is_superuser,is_staff,is_active"|split:',' %}
-        {% include "partials/field_detail_block.html" with legend="Contact Info" icon="mail" field_list="email,language,timezone"|split:',' %}
-        {% endwith %}
     </div>
+    {% endwith %}
 {% endblock %}

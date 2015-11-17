@@ -1,0 +1,23 @@
+{% extends "partials/form_fields.html" %}
+
+{% load i18n %}
+{% load markup %}
+{% load introspection %}
+{% load avatar %}
+
+{% block form-visible-fields %}
+    <div class="ui grid">
+        <div class="sixteen wide mobile six wide tablet four wide computer column">
+            {% avatar object.email size="200" css_class="ui centered limited fluid rounded image" %}
+        </div>
+        <div class="sixteen wide mobile ten wide tablet twelve wide computer column">
+            <div class="ui stackable grid">
+                {% for field in form.visible_fields %}
+                <div class="eight wide column">
+                    {% include "partials/form_field.html" with field=field %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

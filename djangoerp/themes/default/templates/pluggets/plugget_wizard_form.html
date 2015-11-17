@@ -13,11 +13,6 @@
     {% endif %}
 {% endblock %}
 
-{% block page-sub-title %}
-    {% blocktrans with step1=wizard.steps.step1 count=wizard.steps.count %}Step {{ step1 }} of {{ count }}:{% endblocktrans %}
-    {% if wizard.steps.step0 == 0 %}{% trans "choose type" %}{% else %}{% trans "configure settings" %}{% endif %}
-{% endblock %}
-
 {% block main %}
     <div class="ui attached compact segment">
         <h3 class="ui header">

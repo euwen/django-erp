@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load markup %}
+{% load forms %}
+
+{% block form-field %}
+<div
+    class="{% if field.field.required %}required {% endif %}{% if field.errors %}error {% endif %}field"
+    {% if field.help_text %}
+    data-content="{{ field.help_text|safe }}" data-position="bottom center"
+    {% endif %}
+>
+
+    {% block form-field-widget %}
+        {% if field|form_field_widget_type == "CheckboxInput" %}         
+        <div class="ui checkbox">
+            {{ field }}
+            {{ field.label_tag }}
+        </div>
+        {% else %}
+            {{ field.label_tag }}
+            {% if field|form_field_widget_type|startswith:"Select" %}
+            {{ field|add_class:"ui dropdown" }}
+            {% else %}
+            {{ field }}
+            {% endif %}
+        {% endif %}
+    {% endblock %}
+
+    {% block form-field-errors %}
+        {% if field.errors %}
+        <div class="ui pointing red basic label">
+        {% for error in field.errors %}
+            <p>{% trans error %}</p>
+        {% endfor %}
+        </div>
+        {% endif %}
+    {% endblock %}
+
+</div>
+{% endblock %}

@@ -25,3 +25,7 @@
     {{ block.super }}
     {% endif %}
 {% endblock %}
+
+{% block main %}
+    {% include form.template_name|default:"partials/form.html" with form=form form_fields_template="auth/partials/user_form_fields.html" %}
+{% endblock %}

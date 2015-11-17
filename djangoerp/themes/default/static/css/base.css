@@ -87,55 +87,32 @@ a:focus {
     margin-right: 0;
 }
 
-.ui.details.accordion {
-    border-radius: .28571429rem;
-    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15),0 0 0 1px rgba(34,36,38,.15);
-}
-
-.ui.details.accordion > .title {
-    padding: 1em;
-    border-bottom: 1px solid rgba(34,36,38,.15);
-    -webkit-transition: background 200ms;
-    transition: background 200ms;
-}
-
-.ui.details.accordion > .title.active {
-    margin-bottom: -.5em;
-    font-weight: bold;
-    background-color: rgba(34,36,38,.02);
-}
-
-.ui.details.accordion > .content:not(:last-child) {
-    margin-bottom: -1em;
-}
-
-.ui.details.accordion > .content .item {
-    padding-left: 1em;
-    padding-right: 1em;
-}
-
-.ui.list > .item > .inline.content > * {
-    display: inline-block;
-}
-
-.ui.list > .item > .inline.content > .header,
-.ui.list > .item > .inline.content > .description {
-    min-width: 100%;
-}
-
-.ui.list > .item > .inline.content > .description {
-    margin-top: .5em;
-}
-
-.ui.attached.compact {
-    width: 100%;
-    max-width: 50rem;
-}
-
 .ui.form .field input,
 .ui.form .field textarea,
 .ui.form .field select,
 .ui.form .field .dropdown.selection {    
+}
+
+.ui.form .form-actions {
+    margin-top: 1em;
+}
+
+form label,
+.ui.form .field>label,
+.ui.field>.label, .ui.field .field>.label {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    color: rgba(0,0,0,.87);
+    text-transform: uppercase;
+}
+
+.ui.field>.value, .ui.field .field>.value {
+    margin-top: .5em;
+}
+
+.ui.limited {
+    max-width: 24rem;
 }
 
 .region.dashboard .empty-plugget-space {
