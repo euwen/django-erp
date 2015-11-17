@@ -70,6 +70,8 @@
 {% endblock %}
 
 {% block onbodyload-semanticui %}
+    {{ block.super }}
+
     $('.ui.dropdown')
         .dropdown({
             transition: 'fade',
@@ -92,6 +94,8 @@
 {% endblock %}
 
 {% block onbodyload-djangoerp %}
+    {{ block.super }}
+
     $('#header .brand.item > a')
         .hover(
 

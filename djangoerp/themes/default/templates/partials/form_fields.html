@@ -4,6 +4,17 @@
 
 {% get_current_language as lang_code %}
 
+{% block form-errors %}
+    {% if form.non_field_errors %}
+    <div class="ui error message">
+        <div class="header">{% trans "There are some errors" %}</div>
+        {% for error in form.non_field_errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}
+
 {% block form-hidden-fields %}
     {% for field in form.hidden_fields %}
         {{ field }}
@@ -11,10 +22,10 @@
 {% endblock %}
 
 {% block form-visible-fields %}
-    <div class="ui stackable grid">
+    <div class="ui grid">
     {% for field in form.visible_fields %}
         {% if not field|is_current_translation_field:lang_code %}
-        <div class="{% if field|form_field_widget_type == 'Textarea' %}sixteen{% else %}eight{% endif %} wide column">
+        <div class="{% block form-visible-field-css %}sixteen wide mobile{% if field|form_field_widget_type != 'Textarea' and not fluid %} eight wide tablet eight wide computer{% endif %} column{% endblock %}">
             {% include field.template_name|default:"partials/form_field.html" with field=field %}
         </div>
         {% endif %}

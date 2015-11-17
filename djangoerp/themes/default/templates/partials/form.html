@@ -12,17 +12,6 @@
     {% block form-content %}
         {% if not method == "get" %}{% csrf_token %}{% endif %}
 
-        {% block form-errors %}
-            {% if form.non_field_errors %}
-            <div class="ui error message">
-                <div class="header">{% trans "There are some errors" %}</div>
-                {% for error in form.non_field_errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
-        {% endblock %}
-
         {% block form-fields %}
         {% include form_fields_template|default:"partials/form_fields.html" with form_field_template=form_field_template|default:"partials/form_field.html" %}
         {% endblock %}

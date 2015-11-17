@@ -17,11 +17,13 @@
         <form class="ui {% if form.errors %}error {% endif %}form" method="post" action=".">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
-            {% include "partials/form_fields.html" with form=form %}
-            <button type="submit" class="ui right labeled icon right floated red button">
-                <i class="right arrow icon"></i>
-                {% block form-buttons-submit-label %}{% trans 'Login' %}{% endblock %}
-            </button>
+            {% include "partials/form_fields.html" with form=form fluid=True %}
+            <div class="form-actions">
+                <button type="submit" class="ui right labeled icon right floated red button">
+                    <i class="right arrow icon"></i>
+                    {% block form-buttons-submit-label %}{% trans 'Login' %}{% endblock %}
+                </button>
+            </div>
         </form>
     </div>
 {% endblock %}
