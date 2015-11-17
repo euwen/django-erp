@@ -74,6 +74,11 @@
     width: 100%;
 }
 
+#sidebar .ui.vertical.menu {
+    box-shadow: none;
+    border-radius: 0;
+}
+
 #sidebar .ui.vertical.menu > .item {
     border-radius: 0;
 }
