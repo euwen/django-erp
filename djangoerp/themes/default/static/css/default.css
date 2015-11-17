@@ -60,7 +60,7 @@
     z-index: 102;
     margin: 0;
     padding: 0;
-    border-bottom: 5px solid #db2828;
+    border-top: 8px solid #db2828;
     border-radius: 0;
     -webkit-transition: left 200ms;
     transition: left 200ms;
@@ -88,8 +88,7 @@
     margin: 50px 0 0;
     padding-bottom: 2em;
     background-color: #fbfbfc;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 0;
 }
 
 #main > .grid {
@@ -133,8 +132,8 @@
     bottom: 0;
     z-index: 102;
     margin: 0;
-    border-top: 1px solid rgba(255,255,255,.15);
     border-radius: 0;
+    box-shadow: none;
 }
 
 #userarea .item {
@@ -143,10 +142,6 @@
 
 #userarea .breadcrumb.item {
     display: none;
-}
-
-#userarea .breadcrumb.item .divider {
-    color: rgba(255,255,255,.6);
 }
 
 #userarea .profile.item {
@@ -160,6 +155,7 @@
 
 #userarea .logout.item:hover {
     background-color: #db2828;
+    color: #fff;
 }
 
 #footer {
@@ -280,27 +276,6 @@
     #userarea {
         top: 0;
         bottom: auto;
-        border-bottom: 1px solid rgba(34,36,38,.1);
-        background-color: #fff;
-    }
-
-    #userarea .item,
-    #userarea .item a:not(.ui) {
-        color: rgba(0,0,0,.87);
-    }
-
-    #userarea .item:before {
-        background: rgba(34,36,38,.1);
-    }
-
-    #userarea a.item:hover,
-    #userarea .dropdown.item:hover {
-        background: rgba(0,0,0,.03);
-    }
-
-    #userarea .active.item {
-        background: rgba(0,0,0,.05);
-        color: rgba(0,0,0,.95)!important;
     }
 
     #userarea .item > .ui.floating.label {
@@ -310,14 +285,6 @@
 
     #userarea .breadcrumb.item {
         flex-grow: 20;
-    }
-
-    #userarea .breadcrumb.item .divider {
-        color: rgba(0,0,0,.6);
-    }
-
-    #userarea .logout.item:hover {
-        color: #fff;
     }
 }
 
