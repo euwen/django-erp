@@ -110,6 +110,7 @@
     margin: 0 !important;
     background-color: #fff;
     border-bottom: 1px solid rgba(0,0,0,.15);
+    text-overflow: ellipsis;
 }
 
 #main .ui.page-header .ui.header,

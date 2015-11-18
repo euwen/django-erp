@@ -22,6 +22,10 @@ a:focus {
     background-color: #424a5d !important;
 }
 
+.ui.image > .ui.label {
+    opacity: 0.8;
+}
+
 .ui.dropdown .active.button.item {
     background-color: #c0c1c2;
 }
@@ -89,16 +93,28 @@ form label,
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     font-size: 1em;
     font-weight: 700;
-    color: rgba(0,0,0,.87);
+    color: rgba(0,0,0,.6);
     text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ui.field>.value, .ui.field .field>.value {
     margin-top: .5em;
+    margin-bottom: .5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ui.limited {
     max-width: 24rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .region.dashboard .empty-plugget-space {
@@ -148,6 +164,11 @@ form label,
 /* Small devices (tablets, 768px and up) **************************************/
 
 @media (min-width: 768px) {
+
+    .ui.centered.limited.fluid {
+        margin-left: 0;
+        margin-right: 0;
+    }
 
     .ui.list > .item > .inline.content > .header,
     .ui.list > .item > .inline.content > .description {

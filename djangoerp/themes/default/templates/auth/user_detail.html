@@ -34,15 +34,17 @@
     {% with object|get_fields as object_fields %}
     <div class="ui grid">
         <div class="sixteen wide mobile six wide tablet four wide computer column">
-            {% avatar object.email size="200" css_class="ui centered limited fluid rounded image" %}
-            <h2 class="ui center aligned header">
-                {{ object.username }}
-            </h2>
+            <div class="ui centered limited fluid rounded image">
+                {% avatar object.email size="200" css_class="" %}
+                <h2 class="ui bottom attached huge label">
+                    {{ object.username }}
+                </h2>
+            </div>
         </div>
         <div class="sixteen wide mobile ten wide tablet twelve wide computer column">
-            <div class="ui stackable grid">
+            <div class="ui grid">
                 {% for fieldname in "date_joined,last_login,is_superuser,is_staff,is_active,email,language,timezone"|split:',' %}
-                <div class="eight wide column">
+                <div class="sixteen wide mobile eight wide tablet eight wide computer column">
                     {% include "partials/field_details.html" with field=object_fields|get:fieldname %}
                 </div>
                 {% endfor %}
