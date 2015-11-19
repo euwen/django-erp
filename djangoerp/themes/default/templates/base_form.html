@@ -13,7 +13,7 @@
     {% with model=view.model|model_name %}
     {% blocktrans %}Add {{ model }}{% endblocktrans %}
     {% endwith %}
-    {% endif %}
+    {% endif %} | 
 {% endblock %}
 
 {% block page-title %}
@@ -29,11 +29,7 @@
         {% endblock %}
         <div class="sub header">
         {% block page-sub-title %}
-            {% if object and object.pk %}
-            {% with model=object|model_name %}
-            {% blocktrans %}Edit {{ model }}{% endblocktrans %}
-            {% endwith %}
-            {% endif %}
+            {% include "partials/status_label.html" with colour="yellow" label="Not Saved" %}
         {% endblock %}
         </div>
     </h1>

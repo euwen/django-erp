@@ -18,6 +18,10 @@ a:focus {
     outline: none;
 }
 
+.ui.mobile.hidden {
+    display: none;
+}
+
 .ui.inverted {
     background-color: #424a5d !important;
 }
@@ -93,7 +97,7 @@ a:focus {
     margin-top: 1em;
 }
 
-form label,
+.ui .form label,
 .ui.form .field>label,
 .ui.field>.label, .ui.field .field>.label {
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
@@ -104,16 +108,30 @@ form label,
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
+}
+
+.ui .form input,
+.ui .form select,
+.ui .form textarea,
+.ui .form .dropdown,
+.ui.field>.value, .ui.field .field>.value {
+    font-size: 1.2em !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ui .form input,
+.ui .form select,
+.ui .form .dropdown,
+.ui.field>.value, .ui.field .field>.value {
+    font-weight: bold;
 }
 
 .ui.field>.value, .ui.field .field>.value {
     margin-top: .5em;
-    margin-bottom: .5em;
-    font-size: 1.2em;
-    font-weight: bold;
-    white-space: nowrap;
+    margin-bottom: 1em;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .ui.limited {
@@ -174,6 +192,14 @@ form label,
 
 @media (min-width: 768px) {
 
+    .ui.mobile.hidden {
+        display: initial;
+    }
+
+    .ui.tablet.hidden {
+        display: none;
+    }
+
     .ui.centered.limited.fluid {
         margin-left: 0;
         margin-right: 0;
@@ -225,5 +251,22 @@ form label,
     .ui.collapsable.buttons .ui.dropdown.item:not(:last-child) .menu > .item:last-child {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+    }
+}
+
+/* Medium devices (computer, 980px and up) ************************************/
+
+@media (min-width: 768px) {
+
+    .ui.mobile.hidden {
+        display: initial;
+    }
+
+    .ui.tablet.hidden {
+        display: initial;
+    }
+
+    .ui.computer.hidden {
+        display: none;
     }
 }
