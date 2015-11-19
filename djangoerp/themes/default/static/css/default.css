@@ -208,10 +208,6 @@
     #main .ui.page-header .row {
         padding-top: 0;
     }
-
-    /*#main .ui.page-header+* {
-        margin-top: calc(65px - 1rem);
-    }*/
 }
 
 /* Medium devices (desktops, 992px and up) ************************************/
@@ -286,7 +282,7 @@
 
     #userarea .item > .ui.floating.label {
         top: auto;
-        bottom: -1em;
+        bottom: -.8em;
     }
 
     #userarea .breadcrumb.item {
