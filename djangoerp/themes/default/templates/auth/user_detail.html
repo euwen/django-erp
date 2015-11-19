@@ -30,24 +30,53 @@
     {% endif %}
 {% endblock %}
 
+{% block page-sub-title %}
+    <span class="ui {% if object.is_active %}green{% else %}red{% endif %} empty circular label"></span>
+    <strong>{% if object.is_active %}{% trans "Active" %}{% else %}{% trans "Not Active" %}{% endif %}</strong>
+{% endblock %}
+
 {% block main-details %}
     {% with object|get_fields as object_fields %}
-    <div class="ui grid">
+    <div class="ui relaxed grid">
         <div class="sixteen wide mobile six wide tablet four wide computer column">
             <div class="ui centered limited fluid rounded image">
                 {% avatar object.email size="200" css_class="" %}
-                <h2 class="ui bottom attached huge label">
-                    {{ object.username }}
-                </h2>
             </div>
         </div>
         <div class="sixteen wide mobile ten wide tablet twelve wide computer column">
-            <div class="ui grid">
-                {% for fieldname in "date_joined,last_login,is_superuser,is_staff,is_active,email,language,timezone"|split:',' %}
-                <div class="sixteen wide mobile eight wide tablet eight wide computer column">
-                    {% include "partials/field_details.html" with field=object_fields|get:fieldname %}
+            <div class="ui relaxed grid">
+                <div class="two columns row">
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.username %}
+                    </div>
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.email %}
+                    </div>
                 </div>
-                {% endfor %}
+                <div class="two columns row">
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.is_superuser %}
+                    </div>
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.is_staff %}
+                    </div>
+                </div>
+                <div class="two columns row">
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.date_joined %}
+                    </div>
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.last_login %}
+                    </div>
+                </div>
+                <div class="two columns row">
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.language %}
+                    </div>
+                    <div class="column">
+                        {% include "partials/field_details.html" with field=object_fields.timezone %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

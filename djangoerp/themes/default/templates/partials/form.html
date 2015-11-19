@@ -4,7 +4,7 @@
     {% with action_url=action|default:request.path %}
     <form
         {% if id %}id="{% block form-id %}{{ id }}{% endblock %}"{% endif %}
-        class="{% block form-class %}ui form attached compact {% if form.errors %}error {% endif %}segment{% if class %} {{ class }}{% endif %}{% endblock %}"
+        class="{% block form-class %}ui form attached {% if form.errors %}error {% endif %}clearing padded segment{% if class %} {{ class }}{% endif %}{% endblock %}"
         method="{% block form-method %}{{ method|default:'post' }}{% endblock %}"
         action="{% block form-action %}{{ action_url }}{% if next or back and action_url|last == '/' %}?{% endif %}{% if next %}next={{ next }};{% endif %}{% if back %}back={{ back }};{% endif %}{% endblock %}"
         {% if multipart|default:form.is_multipart %}enctype="multipart/form-data"{% endif %}

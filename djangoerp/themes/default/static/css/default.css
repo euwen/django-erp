@@ -89,10 +89,13 @@
 }
 
 #main {
+    position: relative;
     min-height: 100%;
-    margin: 50px 0 0;
-    padding-bottom: 2em;
-    background-color: #fbfbfc;
+    margin: 0;
+    padding: 51px 0 0;
+    background-color: #f8f8f9;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.15);
     border-radius: 0;
 }
 
@@ -101,9 +104,10 @@
     margin-right: -1rem !important;
 }
 
-#main .ui.page-header {
+#main > .ui.page-header {
     position: fixed;
     top: 50px;
+    min-height: 65px;
     left: 0;
     right: 0;
     z-index: 11;
@@ -113,21 +117,21 @@
     text-overflow: ellipsis;
 }
 
-#main .ui.page-header .ui.header,
-#main .ui.page-header .sub.header {
+#main > .ui.page-header .ui.header,
+#main > .ui.page-header .sub.header {
     display: inline-block;
 }
 
-#main .ui.page-header .row .column {
+#main > .ui.page-header .row .column {
     padding-bottom: 0 !important;
 }
 
-#main .ui.page-header+* {
-    margin-top: 65px;
+#main > .ui.page-header+* {
+    clear: both;
+    margin-top: 63px;
 }
 
-#main .ui.page-header+.grid {
-    clear: both;
+#main > .ui.page-header+.grid {
     margin-top: calc(65px - 1rem);
 }
 
@@ -197,10 +201,6 @@
     #userarea .breadcrumb.item .divider,
     #userarea .breadcrumb.item .section:not(:last-child) {
         display: inline-block;
-    }
-
-    #main {
-        padding: 2em;
     }
 
     #main .ui.page-header {

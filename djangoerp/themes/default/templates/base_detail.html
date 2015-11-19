@@ -33,7 +33,7 @@
     {% with nav_menu_slug=object|raw_model_name|add:"_detail_navigation" %}
         {% render_menu nav_menu_slug "menus/partials/menu_tabs.html" %}
         {% get_menu_links nav_menu_slug as nav_menu_links %}
-        <div class="ui {% block main-details-segment-css %}{% if nav_menu_links %}bottom attached {% endif %}{% endblock %}details segment">
+        <div class="ui {% block main-details-segment-css %}{% if nav_menu_links %}bottom attached{% endif %}{% endblock %}attached clearing padded segment">
             {% block main-details %}
             {% endblock %}
         </div>

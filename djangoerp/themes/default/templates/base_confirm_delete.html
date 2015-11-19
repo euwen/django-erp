@@ -18,8 +18,8 @@
             <form method="post" action="{{ request.path }}">
                 {% csrf_token %}
                 <div class="actions">
-                    <div class="ui red cancel basic button">{% trans "No" %}</div>
-                    <button type="submit" class="ui green approve basic button">{% trans "Yes" %}</button>
+                    <div class="ui red cancel button">{% trans "No" %}</div>
+                    <button type="submit" class="ui green approve button">{% trans "Yes" %}</button>
                 </div>
             </form>
         </div>

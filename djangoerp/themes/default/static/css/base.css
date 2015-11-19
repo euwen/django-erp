@@ -22,8 +22,8 @@ a:focus {
     background-color: #424a5d !important;
 }
 
-.ui.image > .ui.label {
-    opacity: 0.8;
+.ui.ribbon {
+    z-index: 9;
 }
 
 .ui.dropdown .active.button.item {
@@ -43,9 +43,15 @@ a:focus {
     margin: 0;
 }
 
-.ui.modal,
+.ui.modal {
+    text-align: center;
+}
+
+.ui.modal .actions,
 .ui.modal > .actions {
     text-align: center;
+    border-top: none;
+    background-color: transparent;
 }
 
 .ui.basic.modal > .header .sub.header {
@@ -113,8 +119,11 @@ form label,
 .ui.limited {
     max-width: 24rem;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.region.dashboard {
+    padding: 2em;
 }
 
 .region.dashboard .empty-plugget-space {
