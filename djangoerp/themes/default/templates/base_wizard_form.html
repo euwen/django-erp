@@ -2,11 +2,17 @@
 
 {% load i18n %}
 
-{% block page-sub-title %}
-    {% blocktrans with step1=wizard.steps.step1 count=wizard.steps.count %}Step {{ step1 }} of {{ count }}{% endblocktrans %}
-    {{ block.super }}
-{% endblock %}
-
 {% block main %}
+    <div class="ui top attached wizard heading segment">
+        {% block form-wizard-step %}
+        <h3 class="ui header">
+            <i class="{% block form-wizard-step-icon %}magic wand{% endblock %} icon"></i>
+            <div class="content">
+                {% block form-wizard-step-title %}{% blocktrans with step1=wizard.steps.step1 count=wizard.steps.count %}Step {{ step1 }} of {{ count }}{% endblocktrans %}{% endblock %}
+                <div class="sub header">{% block form-wizard-step-description %}{% endblock %}</div>
+            </div>
+        </h3>
+        {% endblock %}
+    </div>
     {% include wizard.template_name|default:"partials/wizard.html" with wizard=wizard %}
 {% endblock %}

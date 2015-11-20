@@ -92,7 +92,7 @@
     position: relative;
     min-height: 100%;
     margin: 0;
-    padding: 51px 0 0;
+    padding: 51px 0 2rem;
     background-color: #f8f8f9;
     border: none;
     border-bottom: 1px solid rgba(0,0,0,.15);
@@ -133,6 +133,40 @@
 
 #main > .ui.page-header+.grid {
     margin-top: calc(65px - 1rem);
+}
+
+#main .ui.form {
+    position: relative;
+}
+
+#main .ui.form:before {
+    content: " ";
+    display: block;
+    height: 65px;
+}
+
+#main .ui.form .form-actions {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    padding: 1em;
+    margin: 0;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,.15);
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+#main .ui.wizard.heading {
+    position: relative;
+    top: 65px;
+    margin-bottom: -65px;
+    z-index: 9;
+}
+
+#main .ui.wizard.heading.segment+.ui.form:before {
+    height: 130px;
 }
 
 #userarea {

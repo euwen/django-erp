@@ -13,23 +13,27 @@
     {% endif %}
 {% endblock %}
 
-{% block main %}
-    <div class="ui attached compact segment">
-        <h3 class="ui header">
-            {% if  wizard.steps.step0 == 0 %}
-            <i class="magic wand icon"></i>
-            <div class="content">
-                {% trans "Choose a plugget type" %}
-                <div class="sub header">{% trans "Click 'Next' to customize it..." %}</div>
-            </div>
-            {% elif plugget_description %}
-            <i class="settings icon"></i>
-            <div class="content">
-                {% trans plugget_title %}
-                <div class="sub header">{% trans plugget_description %}</div>
-            </div>
-            {% endif %}
-        </h3>
-    </div>
-    {{ block.super }}
+{% block form-wizard-step-icon %}
+    {% if  wizard.steps.step0 == 1 %}
+        settings
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block form-wizard-step-title %}
+    {{ block.super }}:
+    {% if  wizard.steps.step0 == 0 %}
+        {% trans "Choose a plugget type" %}
+    {% elif plugget_description %}
+        {% trans plugget_title %}
+    {% endif %}
+{% endblock %}
+
+{% block form-wizard-step-description %}
+    {% if  wizard.steps.step0 == 0 %}
+        {% trans "Click 'Next' to customize it..." %}
+    {% else %}
+        {% trans plugget_description %}
+    {% endif %}
 {% endblock %}
