@@ -1,0 +1,19 @@
+@media print {
+    #header,
+    #sidebar,
+    #userarea,
+    #footer,
+    .divider,
+    .ui.menu,
+    .ui.buttons,
+    .ui.button,
+    .form-actions {
+        display: none !important;
+    }
+
+    .ui.segment {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+}
