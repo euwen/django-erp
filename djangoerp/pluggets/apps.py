@@ -20,8 +20,6 @@ __version__ = '0.0.5'
 from django.apps import AppConfig
 from djangoerp.core.utils.apps import AppConfigMixin
 
-from .loading import registry
-
 
 class PluggetsAppConfig(AppConfigMixin, AppConfig):
     name = "djangoerp.pluggets"
@@ -35,5 +33,6 @@ class PluggetsAppConfig(AppConfigMixin, AppConfig):
 
     def ready(self):
         super(PluggetsAppConfig, self).ready()
+        from .loading import registry
         self.plugget_registry = registry
 

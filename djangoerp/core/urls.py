@@ -19,16 +19,16 @@ __version__ = '0.0.5'
 
 from django.conf.urls import url
 from django.views.generic import TemplateView
-
+from django.contrib.auth.views import (login, logout_then_login)
 from .views import *
 
 
 urlpatterns = [
 
     # User authentication management.
-    url(r'^users/login/$', 'django.contrib.auth.views.login', {'template_name': 'auth/login.html'}, name='user_login'),
+    url(r'^users/login/$', login, {'template_name': 'auth/login.html'}, name='user_login'),
     url(r'^users/logout/confirm/$', TemplateView.as_view(template_name="auth/confirm_logout.html"), name='user_confirm_logout'),
-    url(r'^users/logout/$', view='django.contrib.auth.views.logout_then_login', name='user_logout'),
+    url(r'^users/logout/$', view=logout_then_login, name='user_logout'),
     url(r'^users/(?P<pk>\d+)/$', view=DetailUserView.as_view(), name='user_detail'),
     url(r'^users/(?P<pk>\d+)/edit/$', view=UpdateUserView.as_view(), name='user_edit'),
     url(r'^users/(?P<pk>\d+)/delete/$', view=DeleteUserView.as_view(), name='user_delete'),
