@@ -41,22 +41,5 @@
 {% endblock %}
 
 {% block main-details %}
-    {% with object|get_fields as object_fields %}
-    <div class="ui grid">
-        <div class="sixteen wide mobile six wide tablet four wide computer column">
-            <div class="ui centered limited fluid rounded image">
-                {% avatar object.email size="200" css_class="" %}
-            </div>
-        </div>
-        <div class="sixteen wide mobile ten wide tablet twelve wide computer column">
-            <div class="ui stackable grid">
-                {% for fieldname in "username,email,is_superuser,is_staff,language,timezone,date_joined,last_login"|split:"," %}
-                <div class="eight wide column">
-                    {% include "partials/field_details.html" with field=object_fields|get:fieldname %}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    {% endwith %}
+    {% include "auth/partials/user_detail_fields.html" %}
 {% endblock %}
