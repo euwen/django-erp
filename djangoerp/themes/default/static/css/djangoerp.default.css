@@ -84,18 +84,19 @@
 }
 
 .pusher {
+    position: absolute;
     min-width: 320px;
-    height: 100%;
+    top: 51px;
+    left: 0;
+    right: 0;
+    height: calc(100% - 51px);
 }
 
 #main {
     position: relative;
-    min-height: 100%;
     margin: 0;
-    padding: 51px 0 2rem;
-    background-color: #f8f8f9;
+    padding: 0 0 51px;
     border: none;
-    border-bottom: 1px solid rgba(0,0,0,.15);
     border-radius: 0;
 }
 
@@ -104,35 +105,36 @@
     margin-right: -1rem !important;
 }
 
-#main > .ui.page-header {
+#main > .ui.page.heading {
     position: fixed;
     top: 50px;
     min-height: 65px;
     left: 0;
     right: 0;
     z-index: 11;
+    padding: 0;
     margin: 0 !important;
     background-color: #fff;
     border-bottom: 1px solid rgba(0,0,0,.15);
     text-overflow: ellipsis;
 }
 
-#main > .ui.page-header .ui.header,
-#main > .ui.page-header .sub.header {
+#main > .ui.page.heading .ui.header,
+#main > .ui.page.heading .sub.header {
     display: inline-block;
 }
 
-#main > .ui.page-header .row .column {
+#main > .ui.page.heading .row .column {
     padding-bottom: 0 !important;
 }
 
-#main > .ui.page-header+* {
+#main > .ui.page.heading+* {
     clear: both;
     margin-top: 63px;
 }
 
-#main > .ui.page-header+.grid {
-    margin-top: calc(65px - 1rem);
+#main > .ui.page.content > .ui.grid {
+    margin-top: 1rem;
 }
 
 #main .ui.form {
@@ -145,17 +147,20 @@
     height: 65px;
 }
 
-#main .ui.form .form-actions {
+#main .actions {
     position: absolute;
     top: -1px;
     left: 0;
     right: 0;
-    z-index: 9;
     padding: 1em;
-    margin: 0;
-    background: #fff;
-    border-top: 1px solid rgba(0,0,0,.15);
-    border-bottom: 1px solid rgba(0,0,0,.15);
+    margin: 0 -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.15);
+}
+
+#main .actions.fixed {
+    margin-top: 114px;
+    left: 0 !important;
 }
 
 #main .ui.wizard.heading {
@@ -204,10 +209,6 @@
     color: #fff;
 }
 
-#footer {
-    padding-bottom: 110px;
-}
-
 /* Very very small devices (phones, 480px and up) *****************************/
 
 @media (min-width: 480px) {
@@ -237,11 +238,11 @@
         display: inline-block;
     }
 
-    #main .ui.page-header {
+    #main .ui.page.heading {
         padding-top: 1em;
     }
 
-    #main .ui.page-header .row {
+    #main .ui.page.heading .row {
         padding-top: 0;
     }
 }
@@ -284,7 +285,8 @@
 
     #sidebar+.pusher,
     #sidebar+.pusher #userarea,
-    #sidebar+.pusher .ui.page-header {
+    #sidebar+.pusher .ui.page.heading,
+    #sidebar+.pusher .actions.fixed {
         margin-left: 280px !important;
         -webkit-transition: margin 200ms;
         transition: margin 200ms;
@@ -295,7 +297,8 @@
     }
 
     #header.collapsed+#sidebar+.pusher,
-    #header.collapsed+#sidebar+.pusher .ui.page-header {
+    #header.collapsed+#sidebar+.pusher .ui.page.heading,
+    #header.collapsed+#sidebar+.pusher .actions.fixed {
         margin-left: 0 !important;
     }
 
@@ -323,6 +326,10 @@
 
     #userarea .breadcrumb.item {
         flex-grow: 20;
+    }
+
+    #main {
+        padding-bottom: 0;
     }
 }
 

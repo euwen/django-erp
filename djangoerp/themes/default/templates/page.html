@@ -1,7 +1,7 @@
 {% extends "default.html" %}
 
 {% block layout %}
-    <header class="ui page-header grid">
+    <header class="ui page heading grid">
         <div class="row">
             {% block page-header %}
             <div class="twelve wide column">
@@ -17,6 +17,8 @@
         </div>
     </header>
 
-    {% block main %}
-    {% endblock %}
+    <div class="ui page content" id="exampleMain">
+        {% block main %}
+        {% endblock %}
+    </div>
 {% endblock %}

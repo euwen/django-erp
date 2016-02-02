@@ -15,12 +15,7 @@ def install(apps, schema_editor):
     users_group, is_new = Group.objects.get_or_create(name="users")
     add_plugget, is_new = Permission.objects.get_or_create_by_natural_key("add_plugget", "pluggets", "plugget")
     
-    # Regions.
-    footer_region, is_new = Region.objects.get_or_create(
-        slug="footer",
-        title=_("Footer")
-    )
-    
+    # Regions.    
     sidebar_region, is_new = Region.objects.get_or_create(
         slug="sidebar",
         title=_("Sidebar")
@@ -33,15 +28,6 @@ def install(apps, schema_editor):
         template_name="pluggets/partials/menu.html",
         context='{"name": "main"}',
         region_id=sidebar_region.pk
-    )
-    
-    powered_by_plugget, is_new = Plugget.objects.get_or_create(
-        title=_("Powered by"),
-        description=_('Shows a classic "Powered by XYZ" claim.'),
-        source="djangoerp.pluggets.pluggets.text",
-        template_name="pluggets/partials/powered-by.html",
-        context='{"name": "django ERP", "url": "https://github.com/djangoERPTeam/django-erp"}',
-        region_id=footer_region.pk
     )
     
     # Permissions.

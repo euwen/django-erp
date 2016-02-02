@@ -1,7 +1,7 @@
 body {
     min-width: 320px;
     min-height: 480px;
-    background-color: #e8e8e9;
+    background-color: #f8f8f9;
 }
 
 a,
@@ -97,7 +97,7 @@ a:focus {
 .ui.form .field .dropdown.selection {    
 }
 
-.ui.form .form-actions {
+.ui.form > .actions {
     margin-top: 1em;
 }
 
@@ -144,7 +144,7 @@ a:focus {
 }
 
 .region.dashboard {
-    padding: 2em;
+    padding: 1rem;
 }
 
 .region.dashboard .empty-plugget-space {
@@ -178,16 +178,16 @@ a:focus {
     flex-grow: 1;
 }
 
-#footer {
-    padding: 3rem 0;
-}
-
 /* Very small devices (phones, unitl 767px) ***********************************/
 
 @media (max-width: 767px) {
 
     .ui.collapsable.buttons .ui.dropdown .menu > .icon.button.item {
         border-radius: 0;
+    }
+
+    .region.dashboard {
+        padding: 0 0 1rem;
     }
 }
 
@@ -271,5 +271,10 @@ a:focus {
 
     .ui.computer.hidden {
         display: none;
+    }
+
+    .region.dashboard {
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 }
