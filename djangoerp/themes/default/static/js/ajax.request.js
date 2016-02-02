@@ -62,7 +62,12 @@ $.extend({
 
         $.ajaxRequest(action, "GET", {}, null, callback || function(content) {
 
-            self.after(content).siblings('.modal').modal('show');
+            self.after(content)
+                .siblings('.modal')
+                .modal({
+                    onHidden: function(e) { $(this).remove(); }
+                })
+                .modal('show');
         });
     }
 });
