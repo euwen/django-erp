@@ -8,7 +8,7 @@
 {% load regions %}
 
 {% block extrastyle %}
-    <link rel="stylesheet" href="{% static 'css/default.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/djangoerp.default.css' %}"/>
 {% endblock %}
 
 {% block wrapper %}
@@ -171,11 +171,14 @@
         });
 
     $('.about.item')
-        .on('click', $.ajaxRequestLinkInModal);
+        .off('click', erp.ui.requestLinkInModal)
+        .on('click', erp.ui.requestLinkInModal);
 
     $('.logout.item')
-        .on('click', $.ajaxRequestLinkInModal);
+        .off('click', erp.ui.requestLinkInModal)
+        .on('click', erp.ui.requestLinkInModal);
 
     $('.delete.button')
-        .on('click', $.ajaxRequestLinkInModal);
+        .off('click', erp.ui.requestLinkInModal)
+        .on('click', erp.ui.requestLinkInModal);
 {% endblock %}

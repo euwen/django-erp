@@ -17,15 +17,15 @@
 	    <title>{% block meta-title %}{% endblock %}{% trans "django ERP" %}</title>
         <link rel="shortcut icon" href="{% block meta-favicon %}{% static 'favicon.ico' %}{% endblock %}">
         <link rel="stylesheet" href="{% static 'css/semantic.min.css' %}"/>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/djangoerp.base.css' %}"/>
 
         {% if lang_bidi %}
         <!-- Right-To-Left modifications -->
-        <link rel="stylesheet" href="{% static 'css/rtl.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/djangoerp.rtl.css' %}"/>
         {% endif %}
         
         <!-- Print layout -->
-        <link rel="stylesheet" href="{% static 'css/print.css' %}" media="print">
+        <link rel="stylesheet" href="{% static 'css/djangoerp.print.css' %}" media="print">
 
         {% block extrastyle %}
         {% endblock %}
@@ -48,7 +48,7 @@
 
         <script src="{% static 'js/jquery.min.js' %}"></script>
         <script src="{% static 'js/semantic.min.js' %}"></script>
-        <script src="{% static 'js/ajax.request.js' %}"></script>
+        <script src="{% static 'js/djangoerp.request.js' %}"></script>
 
         {% block extrascripts %}
         {% endblock %}
