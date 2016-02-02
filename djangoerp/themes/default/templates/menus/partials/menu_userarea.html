@@ -16,12 +16,12 @@
     <div class="ui breadcrumb item">
         {% render_breadcrumbs %}
     </div>
-    <div class="ui bookmarks top left pointing dropdown icon item">
+    <div class="ui bookmarks top left pointing dropdown icon item" title="{% trans 'Bookmarks' %}">
         <i class="empty star icon"></i>
         {% render_user_bookmarks %}
     </div>
     {% include "menus/partials/menu_only_links.html" with menu=menu link_template="menus/partials/link_only_icon.html" %}
-    <div class="ui notifications top center pointing dropdown icon item">
+    <div class="ui notifications top center pointing dropdown icon item" title="{% trans 'Notifications' %}">
         <i class="inbox icon"></i>
         {% with request.user.notification_set.unread.count as notification_count %}
         {% if notification_count %}<div class="floating ui red label">{{ notification_count }}</div>{% endif %}
@@ -47,10 +47,10 @@
         </div>
         {% endwith %}
     </div>
-    <a class="ui profile item" href="{{ request.user.get_absolute_url }}">
+    <a class="ui profile item" href="{{ request.user.get_absolute_url }}" title="{% trans 'Your profile' %}">
         {% avatar request.user.email "32" css_class="ui avatar image" %} {{ request.user }}
     </a>
-    <a class="ui logout icon item" href="{% url 'user_confirm_logout' %}">
+    <a class="ui logout icon item" href="{% url 'user_confirm_logout' %}" title="{% trans 'Logout' %}">
         <i class="large power off icon"></i>
     </a>
 {% endblock %}

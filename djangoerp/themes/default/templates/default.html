@@ -18,7 +18,7 @@
         <div class="brand header item">
             {% include "partials/brand.html" %}
         </div>
-        <div class="ui top left pointing dropdown icon item">
+        <div class="ui top left pointing dropdown icon item" title="{% trans 'Search' %}">
             <i class="search icon"></i>
             <div class="ui vertical menu">
                 <div class="ui icon search input">
@@ -43,7 +43,7 @@
                 <span class="label">{% now "SHORT_DATE_FORMAT" %}</span>
             </div>
         </div>
-        <div class="nav icon link item">
+        <div class="nav icon link item" title="{% trans 'Toggle sidebar' %}">
             <i class="chevron left icon"></i>
         </div>
         <div class="sidebar icon link item">

@@ -8,6 +8,7 @@
     <a
         class="ui left floated icon button"
         href="{% block form-cancel-button-link %}{% if object %}{{ object.get_absolute_url }}{% else %}{% url 'home' %}{% endif %}{% endblock %}"
+        title="{% trans 'Cancel' %}"
     >
         <i class="{% block form-cancel-button-icon %}cancel icon{% endblock %}"></i>
         {% block form-cancel-button-label %}{% trans "Cancel" %}{% endblock %}

@@ -19,7 +19,7 @@
             <input type="hidden" name="next" value="{{ next }}" />
             {% include "partials/form_fields.html" with form=form stackable=True %}
             <div class="form-actions">
-                <button type="submit" class="ui right labeled icon right floated red button">
+                <button type="submit" class="ui right labeled icon right floated red button" title="{% trans 'Login' %}">
                     <i class="right arrow icon"></i>
                     {% block form-buttons-submit-label %}{% trans 'Login' %}{% endblock %}
                 </button>
