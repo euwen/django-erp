@@ -26,8 +26,8 @@ from djangoerp.settings.base import (
 
 AUTH_USER_MODEL = 'core.User'
 
-LOGIN_URL = '/users/login'
-LOGOUT_URL = '/users/logout'
+LOGIN_URL = '/users/login/'
+LOGOUT_URL = '/users/logout/'
 LOGIN_REDIRECT_URL = '/'
 
 LOGIN_REQUIRED_URLS = (
