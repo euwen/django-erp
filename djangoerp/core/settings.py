@@ -19,7 +19,7 @@ __version__ = '0.0.5'
 
 from djangoerp.settings.base import (
     DEBUG,
-    TEMPLATE_CONTEXT_PROCESSORS,
+    TEMPLATES,
     MIDDLEWARE_CLASSES
 )
 
@@ -39,7 +39,7 @@ LOGIN_REQUIRED_URLS_EXCEPTIONS = (
     r'/users/login/$',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS += (
+TEMPLATES[0]['OPTIONS']['context_processors'] += (
     'djangoerp.core.context_processors.auth',
     'djangoerp.core.context_processors.system_info',
 )
