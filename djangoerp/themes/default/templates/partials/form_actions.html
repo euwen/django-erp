@@ -6,7 +6,7 @@
     {% block form-buttons-submit %}{{ block.super }}{% endblock %}
     {% block form-buttons-cancel %}
     <a
-        class="ui icon left floated button"
+        class="ui left floated icon button"
         href="{% block form-cancel-button-link %}{% if object %}{{ object.get_absolute_url }}{% else %}{% url 'home' %}{% endif %}{% endblock %}"
     >
         <i class="{% block form-cancel-button-icon %}cancel icon{% endblock %}"></i>

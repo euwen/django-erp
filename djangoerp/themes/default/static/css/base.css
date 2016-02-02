@@ -26,6 +26,10 @@ a:focus {
     background-color: #424a5d !important;
 }
 
+.ui.medium.small.image {
+    width: 200px;
+}
+
 .ui.ribbon {
     z-index: 9;
 }
@@ -130,7 +134,6 @@ a:focus {
 
 .ui.field>.value, .ui.field .field>.value {
     margin-top: .5em;
-    margin-bottom: 1em;
     overflow: hidden;
 }
 

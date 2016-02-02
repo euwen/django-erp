@@ -9,16 +9,10 @@
 {% block form-visible-fields %}
     <div class="ui grid">
         <div class="sixteen wide mobile six wide tablet four wide computer column">
-            {% avatar object.email size="200" css_class="ui centered limited fluid rounded image" %}
+            {% avatar object.email size="200" css_class="ui centered medium small circular image" %}
         </div>
         <div class="sixteen wide mobile ten wide tablet twelve wide computer column">
-            <div class="ui stackable grid">
-                {% for field in form.visible_fields %}
-                <div class="{% block form-visible-field-css %}{{ block.super }}{% endblock %}">
-                    {% include "partials/form_field.html" with field=field %}
-                </div>
-                {% endfor %}
-            </div>
+            {{ block.super }}
         </div>
     </div>
 {% endblock %}

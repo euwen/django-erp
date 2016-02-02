@@ -25,7 +25,7 @@
     <div class="ui grid">
     {% for field in form.visible_fields %}
         {% if not field|is_current_translation_field:lang_code %}
-        <div class="{% block form-visible-field-css %}sixteen wide mobile{% if field|form_field_widget_type != 'Textarea' and not fluid %} eight wide tablet eight wide computer{% endif %} column{% endblock %}">
+        <div class="{% block form-visible-field-css %}sixteen wide {% if not stackable %}mobile eight wide tablet eight wide computer{% endif %}{% endblock %} column">
             {% include field.template_name|default:"partials/form_field.html" with field=field %}
         </div>
         {% endif %}
