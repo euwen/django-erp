@@ -136,7 +136,7 @@ class Activity(models.Model):
     def get_absolute_url(self):
         return self.backlink or ""
 
-python_2_unicode_compatible
+@python_2_unicode_compatible
 class Notification(models.Model):
     """A notification notifies a specific event to a specific target.
     """
