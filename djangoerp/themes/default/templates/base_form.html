@@ -1,22 +1,7 @@
-{% extends "page.html" %}
-
 {% load i18n %}
 {% load introspection %}
-{% load menus %}
 
-{% block meta-title %}
-    {% if object and object.pk %}
-    {% with model=object|model_name %}
-    {% blocktrans %}Edit {{ model }}{% endblocktrans %}
-    {% endwith %}
-    {% else %}
-    {% with model=view.model|model_name %}
-    {% blocktrans %}Add {{ model }}{% endblocktrans %}
-    {% endwith %}
-    {% endif %} | 
-{% endblock %}
-
-{% block page-title %}
+<div class="ui modal">
     <h1 class="ui header">
         {% block page-main-title %}
             {% if object and object.pk %}
@@ -33,12 +18,9 @@
         {% endblock %}
         </div>
     </h1>
-{% endblock %}
-
-{% block page-actions %}
-    {% with action_menu_slug=object|raw_model_name|add:"_detail_actions" %}{% render_menu action_menu_slug "menus/partials/menu_actions.html" %}{% endwith %}
-{% endblock %}
-
-{% block main %}
-    {% include form.template_name|default:"partials/form.html" with form=form %}
-{% endblock %}
+    <div class="content">
+    {% block main %}
+        {% include form.template_name|default:"partials/form.html" with form=form %}
+    {% endblock %}
+    </div>
+</div>

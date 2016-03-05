@@ -47,6 +47,7 @@
         {% endblock %}
 
         <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/readyExec.js' %}"></script>
         <script src="{% static 'js/semantic.min.js' %}"></script>
         <script src="{% static 'js/djangoerp.request.js' %}"></script>
 
@@ -54,19 +55,15 @@
         {% endblock %}
 
         <script>
-            $(document).on('ready', function(e) {
+            $.readyFn.register(function(e) {
                 {% block onbodyload %}
 
                 /* Semantic UI stuff */
 
                 {% block onbodyload-semanticui %}
-                    $('.ui.form .field')
-                        .popup();
+                    $('.ui.popup').remove();
 
-                    $('.ui.button')
-                        .popup();
-
-                    $('.ui.menu > .item')
+                    $('.ui.form .field, .ui.button, .ui.menu > .item')
                         .popup();
                 {% endblock %}
 

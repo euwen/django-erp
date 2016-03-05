@@ -19,6 +19,7 @@ __version__ = '0.0.5'
 import re
 
 from django.conf import settings  
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from .cache import LoggedInUserCache
@@ -75,3 +76,9 @@ class LoggedInUserCacheMiddleware(object):
 
         return None
 
+class AjaxRedirectMiddleware(object):
+    def process_response(self, request, response):
+        if request.is_ajax():
+            if type(response) == HttpResponseRedirect:
+                response.status_code = 278
+        return response

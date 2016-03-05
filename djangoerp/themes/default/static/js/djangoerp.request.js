@@ -11,6 +11,8 @@ var erp = {
                     onHidden: function(e) { $(this).remove(); }
                 })
                 .modal('show');
+
+            $.readyFn.execute();
         },
 
         request: function(action, method, data, selector, callback) {
@@ -25,35 +27,33 @@ var erp = {
                 error: function(xhr) { console.log(xhr.responseText); },
                 complete: function(xhr, status) {
 
-                    var dom = $('<div/>').html(xhr.responseText.replace(/\s+/g, " ").replace("  ", ""));
-                    var new_location = xhr.getResponseHeader("Location");
+                    // If it is a redirect to another URL, follow it.
+                    if (xhr.status == 278) {
 
-                    if (selector) {
-
-                        dom = dom.find(selector);
-                    }
-
-                    // If it is a redirect, follow it.
-                    if (new_location) {
-
-                        erp.ui.request(
-                            new_location, 
-                            "GET", 
-                            null, 
-                            selector, 
-                            callback
-                        );
+                        window.location.href = xhr.getResponseHeader("Location");
 
                     // Has content: handle it.
-                    } else if (dom) {
+                    } else {
+                        
+                        var dom = $('<div/>').html(xhr.responseText.replace(/\s+/g, " ").replace("  ", ""));
 
-                        if (callback) { 
+                        if (dom) {
 
-                            callback(dom.html(), xhr);
+                            if (callback) { 
 
-                        } else {
+                                callback(dom.html(), xhr);
 
-                            $(selector || "html").html(dom.html());
+                            } else {
+
+                                if (selector) {
+
+                                    dom = dom.find(selector);
+                                }
+
+                                $(selector || "html").html(dom.html());
+
+                                $.readyFn.execute();
+                            }
                         }
                     }
                 }
@@ -84,6 +84,24 @@ var erp = {
 
                 erp.ui.openModal($(evt.currentTarget), content);
             });
+        },
+
+        handleFormSubmit: function(evt, callback) {
+
+            evt.preventDefault();
+            evt.stopPropagation();
+
+            var submit_button = $(this);
+            var form = submit_button.closest('form');
+            var action = form.attr("action");
+            var method = form.attr("method");
+            var data = form.serialize();
+
+            submit_button.attr("disabled", true);
+
+            erp.ui.request(action, method, data, '.modal', callback);
+
+            submit_button.attr("disabled", false);
         },
     }
 }

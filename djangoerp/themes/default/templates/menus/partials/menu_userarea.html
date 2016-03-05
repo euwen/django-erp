@@ -50,7 +50,7 @@
     <a class="ui profile item" href="{{ request.user.get_absolute_url }}" title="{% trans 'Your profile' %}">
         {% avatar request.user.email "32" css_class="ui avatar image" %} {{ request.user }}
     </a>
-    <a class="ui logout icon item" href="{% url 'user_confirm_logout' %}" title="{% trans 'Logout' %}">
+    <a class="ui logout icon dialog item" href="{% url 'user_confirm_logout' %}" title="{% trans 'Logout' %}">
         <i class="large power off icon"></i>
     </a>
 {% endblock %}

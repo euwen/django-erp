@@ -47,6 +47,7 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += (
 MIDDLEWARE_CLASSES += (
     'djangoerp.core.middleware.RequireLoginMiddleware',
     'djangoerp.core.middleware.LoggedInUserCacheMiddleware',
+    'djangoerp.core.middleware.AjaxRedirectMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (

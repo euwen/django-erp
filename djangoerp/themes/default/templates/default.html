@@ -137,15 +137,23 @@
     $('#messages .message')
         .transition('fly left in');
 
-    $('.about.item')
+    $('.dialog')
         .off('click', erp.ui.requestLinkInModal)
         .on('click', erp.ui.requestLinkInModal);
 
-    $('.logout.item')
+    $('.add')
         .off('click', erp.ui.requestLinkInModal)
         .on('click', erp.ui.requestLinkInModal);
 
-    $('.delete.button')
+    $('.edit')
         .off('click', erp.ui.requestLinkInModal)
         .on('click', erp.ui.requestLinkInModal);
+
+    $('.delete')
+        .off('click', erp.ui.requestLinkInModal)
+        .on('click', erp.ui.requestLinkInModal);
+
+    $('.ui.modal form button[type="submit"]')
+        .off('click', erp.ui.handleFormSubmit)
+        .on('click', erp.ui.handleFormSubmit);
 {% endblock %}

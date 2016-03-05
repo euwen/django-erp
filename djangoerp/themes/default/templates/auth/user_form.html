@@ -2,21 +2,6 @@
 
 {% load i18n %}
 {% load markup %}
-{% load breadcrumbs %}
-{% load avatar %}
-
-{% block breadcrumbs %}
-    {% if object and object.pk %}
-    {% if object == user %}
-    {% add_crumb 'My profile' object.get_absolute_url %}
-    {% else %}
-    {% add_crumb  object object.get_absolute_url %}
-    {% endif %}
-    {% add_crumb 'Edit' %}
-    {% else %}
-    {% add_crumb 'Add user' %}
-    {% endif %}
-{% endblock %}
 
 {% block page-main-title %}
     {% if object.pk == user.pk %}
