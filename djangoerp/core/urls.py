@@ -17,13 +17,34 @@ __copyright__ = 'Copyright (c) 2013-2015, django ERP Team'
 __version__ = '0.0.5'
 
 
-from django.conf.urls import url
+from django.conf.urls import (url, include)
 from django.views.generic import TemplateView
 from django.contrib.auth.views import (login, logout_then_login)
 from .views import *
 
 
+from rest_framework import routers, serializers, viewsets
+
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
+
 urlpatterns = [
+    url(r'^', include(router.urls)),
+    #url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
 
     # User authentication management.
     url(r'^users/login/$', login, {'template_name': 'auth/login.html'}, name='user_login'),

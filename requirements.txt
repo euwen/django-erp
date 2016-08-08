@@ -2,3 +2,5 @@ pip
 pytz>=2015.4
 django>=1.8.0
 django-formtools
+djangorestframework
+django-filter

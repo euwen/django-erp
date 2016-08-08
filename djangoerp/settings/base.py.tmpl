@@ -221,6 +221,7 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     'django.contrib.redirects',
 
+    'rest_framework',
     'formtools',
     
     'djangoerp.core',
@@ -230,3 +231,11 @@ INSTALLED_APPS = (
     
     #'djangoerp.registration',
 )
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
